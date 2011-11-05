@@ -9,6 +9,7 @@ spl_autoload_register(
          $classes = array(
             'accessors' => '/Distillate/Accessors.php',
             'distillate' => '/Distillate/Distillate.php',
+            'interfacedistiller' => '/InterfaceDistiller.php',
             'mutators' => '/Distillate/Mutators.php',
             'noimplementedmethodsiterator' => '/Filters/NoImplementedMethodsIterator.php',
             'noinheritedmethodsiterator' => '/Filters/NoInheritedMethodsIterator.php',

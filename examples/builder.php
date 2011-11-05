@@ -1,17 +1,19 @@
 <?php
+include '../src/autoload.php';
+$outFile = new SplTempFileObject(-1);
 $distiller = new InterfaceDistiller;
 $distiller
-    ->fromClass('SomeClass')
-    ->intoInterface('SomeInterface')
-    ->extendInterfaceFrom('Countable')
-    ->excludePublicMethods()
-    ->excludeProtectedMethods()
-    ->excludePrivateMethods()
+    ->distillFromClass('SplFileObject')
+    ->methodsWithModifiers(ReflectionMethod::IS_PUBLIC)
+    ->intoInterface('MyInterface')
+    ->extendInterfaceFrom('Iterator, SeekableIterator')
     ->excludeImplementedMethods()
     ->excludeInheritedMethods()
-    ->excludeTraitMethods()
     ->excludeMagicMethods()
     ->excludeOldStyleConstructors()
-    ->filterMethodsByPcrePattern('(^[f].*)')
-    ->saveAs('SomeInterface.php')
+    ->filterMethodsByPattern('(^[f].*)')
+    ->saveAs($outFile)
     ->distill();
+
+$outFile->rewind();
+$outFile->fpassthru();
