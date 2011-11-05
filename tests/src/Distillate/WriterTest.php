@@ -68,7 +68,6 @@ class WriterTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Writer::setExtendingInterfaces
      * @covers Writer::writeToFile
      * @covers Writer::__construct
      * @covers Writer::<!public>
@@ -81,7 +80,6 @@ class WriterTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Writer::addMethod
      * @covers Writer::writeToFile
      * @covers Writer::__construct
      * @covers Writer::<!public>
@@ -121,7 +119,6 @@ class WriterTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Writer::addMethod
      * @covers Writer::writeToFile
      * @covers Writer::__construct
      * @covers Writer::<!public>

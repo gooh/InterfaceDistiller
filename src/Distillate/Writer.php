@@ -1,21 +1,6 @@
 <?php
-class InterfaceWriter
+class Writer
 {
-    /**
-     * @var string
-     */
-    protected $interfaceName;
-
-    /**
-     * @var string
-     */
-    protected $extendingInterfaces;
-
-    /**
-     * @var SplObjectStorage
-     */
-    protected $methods;
-
     /**
      * @var SplFileObject
      */
@@ -25,51 +10,24 @@ class InterfaceWriter
      * @param string $interfaceName
      * @return void
      */
-    public function __construct($interfaceName, SplFileObject $fileObject)
+    public function __construct(SplFileObject $fileObject)
     {
-        $this->interfaceName = $interfaceName;
         $this->fileObject = $fileObject;
-        $this->methods = new SplObjectStorage;
     }
 
     /**
-     * @param string $commaSeparatedInterfaceNames
+     * @param Accessors $interface
      * @return void
      */
-    public function setExtendingInterfaces($commaSeparatedInterfaceNames)
-    {
-        $this->extendingInterfaces = $commaSeparatedInterfaceNames;
-    }
-
-    /**
-     * @param ReflectionMethod $reflectionMethod
-     * @return void
-     */
-    public function addMethod(ReflectionMethod $reflectionMethod)
-    {
-        $this->methods->attach($reflectionMethod);
-    }
-
-    /**
-     * @param array $reflectionMethods
-     * @return void
-     */
-    public function addMethods(array $reflectionMethods)
-    {
-        foreach ($reflectionMethods as $reflectionMethod) {
-            $this->addMethod($reflectionMethod);
-        }
-    }
-
-    /**
-     * @return void
-     */
-    public function writeToFile()
+    public function writeToFile(Accessors $interface)
     {
         $this->writePhpOpeningTag();
-        $this->writeInterfaceSignature();
+        $this->writeInterfaceSignature(
+            $interface->getInterfaceName(),
+            $interface->getExtendingInterfaces()
+        );
         $this->writeOpeningBrace();
-        $this->writeMethods();
+        $this->writeMethods($interface->getInterfaceMethods());
         $this->writeClosingBrace();
     }
 
@@ -84,11 +42,11 @@ class InterfaceWriter
     /**
      * @return void
      */
-    protected function writeInterfaceSignature()
+    protected function writeInterfaceSignature($interfaceName, $extendingInterfaces = false)
     {
-        $this->fileObject->fwrite("interface {$this->interfaceName}");
-        if ($this->extendingInterfaces) {
-            $this->fileObject->fwrite(" extends {$this->extendingInterfaces}");
+        $this->fileObject->fwrite("interface {$interfaceName}");
+        if ($extendingInterfaces) {
+            $this->fileObject->fwrite(" extends {$extendingInterfaces}");
         }
         $this->fileObject->fwrite(PHP_EOL);
     }
@@ -104,9 +62,9 @@ class InterfaceWriter
     /**
      * @return void
      */
-    protected function writeMethods()
+    protected function writeMethods(array $methods)
     {
-        foreach ($this->methods as $method) {
+        foreach ($methods as $method) {
             $this->fileObject->fwrite($this->writeMethod($method));
             $this->fileObject->fwrite(PHP_EOL);
         }
