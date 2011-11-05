@@ -14,12 +14,14 @@ $methodIterator = new RegexMethodIterator(
     ),
 	'(^[f].*)'
 );
-$writer = new InterfaceWriter('FileObject');
-$writer->setExtendingInterfaces('Iterator, SeekableIterator');
+$distillate = new Distillate;
+$distillate->setInterfaceName('MyInterface');
+$distillate->setExtendingInterfaces('Iterator, SeekableIterator');
 foreach ($methodIterator as $method) {
-    $writer->addMethod($method);
+    $distillate->addMethod($method);
 }
-$file = $writer->writeToFile(new SplTempFileObject(-1));
+$file = new SplTempFileObject(-1);
+$writer = new Writer($file);
+$writer->writeToFile($distillate);
 $file->rewind();
 $file->fpassthru();
-
