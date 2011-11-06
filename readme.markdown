@@ -5,6 +5,7 @@ InterfaceDistiller allows you to derive Interfaces from the API of a class.
 ## Basic Usage Example
 
 ```php
+<?php
 $distiller = new InterfaceDistiller;
 $distiller
     ->distillFromClass('SplFileObject')
