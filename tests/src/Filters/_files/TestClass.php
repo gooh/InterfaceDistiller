@@ -1,4 +1,5 @@
-<?php namespace InterfaceDistiller\Tests\Filters;
+<?php
+namespace com\github\gooh\InterfaceDistiller\Tests\Filters;
 abstract class TestClass extends SomeClass implements SomeInterface
 {
     abstract public function foo();

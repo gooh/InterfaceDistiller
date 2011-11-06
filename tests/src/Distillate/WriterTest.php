@@ -1,19 +1,16 @@
 <?php
-
+namespace com\github\gooh\InterfaceDistiller\Tests\Distillate;
+use \com\github\gooh\InterfaceDistiller\Distillate\Writer as Writer;
 require __DIR__ . '/_files/TestClass.php';
-
-/**
- * @covers Writer
- */
-class WriterTest extends PHPUnit_Framework_TestCase
+class WriterTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var Writer
+     * @var \com\github\gooh\InterfaceDistiller\Distillate\Writer
      */
     private $writer;
 
     /**
-     * @var SplFileObject
+     * @var \SplFileObject
      */
     private $fileObject;
 
@@ -22,7 +19,7 @@ class WriterTest extends PHPUnit_Framework_TestCase
      */
     public function setup()
     {
-        $this->fileObject = new SplTempFileObject(-1);
+        $this->fileObject = new \SplTempFileObject(-1);
         $this->writer = new Writer($this->fileObject);
     }
 
@@ -50,7 +47,8 @@ class WriterTest extends PHPUnit_Framework_TestCase
      */
     private function stubInterfaceAccessors($interfaceName, $extendingInterfaces = '', $interfaceMethods = array())
     {
-        $accessors = $this->getMock('Accessors');
+        $baseNamespace = '\\com\\github\\gooh\\InterfaceDistiller\\Distillate\\';
+        $accessors = $this->getMock($baseNamespace . 'Accessors');
         $accessors
             ->expects($this->any())
             ->method('getInterfaceName')
@@ -84,10 +82,10 @@ class WriterTest extends PHPUnit_Framework_TestCase
      * @covers Writer::__construct
      * @covers Writer::<!public>
      * @dataProvider provideReflectionMethodsAndExpectedSignatures
-     * @param ReflectionMethod $method
+     * @param \ReflectionMethod $method
      * @param string $expectedSignature
      */
-    public function testWrittenInterfaceContainsAddedMethods(ReflectionMethod $method, $expectedSignature)
+    public function testWrittenInterfaceContainsAddedMethods(\ReflectionMethod $method, $expectedSignature)
     {
         $accessors = $this->stubInterfaceAccessors('', '', array($method));
         $this->writer->writeToFile($accessors);
@@ -102,16 +100,17 @@ class WriterTest extends PHPUnit_Framework_TestCase
         $signatures = array(
         	'public static function fn1();',
         	'public function fn2();',
-        	'public function fn3(TestClass $testClass);',
+        	'public function fn3(' . __NAMESPACE__ . '\\TestClass $testClass);',
         	'public function fn4($bar = 1);',
         	'public function fn5(&$bar);',
         	'public function fn6(array $foo);',
         	'public function fn7(array $foo = array());',
-        	'public function fn8($foo = array());'
+        	'public function fn8($foo = array());',
+        	'public function fn9(\\DateTime $dateTime);'
         );
         foreach ($signatures as $i => $signature) {
             $data[] = array(
-                new ReflectionMethod('TestClass', 'fn' . ($i + 1)),
+                new \ReflectionMethod(__NAMESPACE__ . '\\TestClass', 'fn' . ($i + 1)),
                 $signature
             );
         }
@@ -125,7 +124,7 @@ class WriterTest extends PHPUnit_Framework_TestCase
      */
     public function testWrittenMethodsContainExistingDocBlocks()
     {
-        $method = array(new ReflectionMethod('TestClass', 'foo'));
+        $method = array(new \ReflectionMethod(__NAMESPACE__ . '\\TestClass', 'foo'));
         $accessors = $this->stubInterfaceAccessors('', '', $method);
         $this->writer->writeToFile($accessors);
         $this->assertSameContentAtLine('/**', 3);

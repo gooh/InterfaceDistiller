@@ -1,4 +1,5 @@
 <?php
+namespace com\github\gooh\InterfaceDistiller\Tests\Filters;
 require_once 'FilterIteratorTestCase.php';
 class NoInheritedMethodsIteratorTest extends FilterIteratorTestCase
 {
@@ -19,11 +20,11 @@ class NoInheritedMethodsIteratorTest extends FilterIteratorTestCase
     /**
      * @see FilterIteratorTestCase::createFilterIterator()
      */
-    protected function createFilterIterator(Iterator $methodIterator)
+    protected function createFilterIterator(\Iterator $methodIterator)
     {
-        return new NoInheritedMethodsIterator(
+        return new \com\github\gooh\InterfaceDistiller\Filters\NoInheritedMethodsIterator(
             $methodIterator,
-            new ReflectionClass($this->getTestClassName())
+            new \ReflectionClass($this->getTestClassName())
         );
     }
 }

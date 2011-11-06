@@ -1,8 +1,9 @@
 <?php
-class DistillateTest extends PHPUnit_Framework_TestCase
+namespace com\github\gooh\InterfaceDistiller\Tests;
+class DistillateTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var Distillate
+     * @var \com\github\gooh\InterfaceDistiller\Distillate
      */
     private $distillate;
 
@@ -11,7 +12,7 @@ class DistillateTest extends PHPUnit_Framework_TestCase
      */
     public function __construct()
     {
-        $this->distillate = new Distillate;
+        $this->distillate = new \com\github\gooh\InterfaceDistiller\Distillate;
     }
 
     /**
@@ -67,7 +68,7 @@ class DistillateTest extends PHPUnit_Framework_TestCase
      */
     public function testCanGetAndSetInterfaceMethods()
     {
-        $method = $this->getMock('ReflectionMethod', array(), array(), '', false);
+        $method = $this->getMock('\ReflectionMethod', array(), array(), '', false);
         $this->distillate->addMethod($method);
         $this->assertEquals(
             array($method),

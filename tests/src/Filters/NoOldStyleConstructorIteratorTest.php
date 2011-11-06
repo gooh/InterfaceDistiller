@@ -1,4 +1,5 @@
 <?php
+namespace com\github\gooh\InterfaceDistiller\Tests\Filters;
 require_once 'FilterIteratorTestCase.php';
 class NoOldStyleConstructorIteratorTest extends FilterIteratorTestCase
 {

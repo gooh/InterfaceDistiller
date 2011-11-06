@@ -1,9 +1,11 @@
 <?php
+namespace com\github\gooh\InterfaceDistiller\Tests\Filters;
+
 version_compare(phpversion(), '5.4', '<')
     ? require_once __DIR__ . '/_files/TestClass.php'
     : require_once __DIR__ . '/_files/TestClassWithTrait.php';
 
-abstract class FilterIteratorTestCase extends PHPUnit_Framework_TestCase
+abstract class FilterIteratorTestCase extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var string
@@ -16,23 +18,27 @@ abstract class FilterIteratorTestCase extends PHPUnit_Framework_TestCase
     private $testClassName;
 
     /**
-     * @see PHPUnit_Framework_TestCase::setUp()
+     * @see \PHPUnit_Framework_TestCase::setUp()
      * @return void
      */
     public function setUp()
     {
-        $this->filterIteratorClassName = substr(get_class($this), 0, -4);
-        $this->testClassName = 'InterfaceDistiller\Tests\Filters\TestClass';
+        $this->filterIteratorClassName = str_replace(
+            __NAMESPACE__,
+            '\\com\\github\\gooh\\InterfaceDistiller\\Filters',
+            substr(get_class($this), 0, -4)
+        );
+        $this->testClassName = __NAMESPACE__ . '\\TestClass';
 
     }
 
     /**
      * @param string $methodNames
-     * @return ReflectionMethod
+     * @return \ReflectionMethod
      */
     public function getTestClassMethod($methodName)
     {
-        return new ReflectionMethod($this->testClassName, $methodName);
+        return new \ReflectionMethod($this->testClassName, $methodName);
     }
 
     /**
@@ -64,20 +70,20 @@ abstract class FilterIteratorTestCase extends PHPUnit_Framework_TestCase
      */
     private function getFilteredArray()
     {
-        $reflector = new ReflectionClass($this->testClassName);
+        $reflector = new \ReflectionClass($this->testClassName);
         return iterator_to_array(
             $this->createFilterIterator(
-                new ArrayIterator($reflector->getMethods())
+                new \ArrayIterator($reflector->getMethods())
             ),
             false
         );
     }
 
     /**
-     * @param Iterator $methodIterator
-     * @return FilterIterator
+     * @param \Iterator $methodIterator
+     * @return \FilterIterator
      */
-    protected function createFilterIterator(Iterator $methodIterator)
+    protected function createFilterIterator(\Iterator $methodIterator)
     {
         return new $this->filterIteratorClassName($methodIterator);
     }

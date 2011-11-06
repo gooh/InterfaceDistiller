@@ -1,4 +1,5 @@
 <?php
+namespace com\github\gooh\InterfaceDistiller\Tests\Filters;
 require_once 'FilterIteratorTestCase.php';
 class RegexMethodIteratorTest extends FilterIteratorTestCase
 {
@@ -18,9 +19,9 @@ class RegexMethodIteratorTest extends FilterIteratorTestCase
     /**
      * @see FilterIteratorTestCase::createFilterIterator()
      */
-    protected function createFilterIterator(Iterator $methodIterator)
+    protected function createFilterIterator(\Iterator $methodIterator)
     {
-        return new RegexMethodIterator(
+        return new \com\github\gooh\InterfaceDistiller\Filters\RegexMethodIterator(
             $methodIterator,
             '(^[^i].*)'
         );

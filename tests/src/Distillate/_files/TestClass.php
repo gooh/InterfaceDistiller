@@ -1,4 +1,5 @@
 <?php
+namespace com\github\gooh\InterfaceDistiller\Tests\Distillate;
 class TestClass
 {
     const FOO = 1;
@@ -14,4 +15,5 @@ class TestClass
     public function fn6(array $foo) {}
     public function fn7(array $foo = array()) {}
     public function fn8($foo = array()) {}
+    public function fn9(\DateTime $dateTime) {}
 }
