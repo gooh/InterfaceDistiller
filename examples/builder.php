@@ -12,7 +12,7 @@ $distiller
     ->excludeInheritedMethods()
     ->excludeMagicMethods()
     ->excludeOldStyleConstructors()
-    ->filterMethodsByPattern('(^[f].*)')
+    ->filterMethodsByPattern('(^f)')
     ->saveAs($outFile)
     ->distill();
 

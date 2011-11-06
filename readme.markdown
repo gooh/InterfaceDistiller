@@ -15,9 +15,8 @@ $distiller
     ->excludeInheritedMethods()
     ->excludeMagicMethods()
     ->excludeOldStyleConstructors()
-    ->filterMethodsByPattern('(^[f].*)')
+    ->filterMethodsByPattern('(^f)')
     ->saveAs(new SplFileObject('MyInterface.php'))
     ->distill();
-```
-        
+```        
 Additional executable examples can be found in the examples folder.

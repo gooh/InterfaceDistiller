@@ -15,7 +15,7 @@ $methodIterator = new Filters\RegexMethodIterator(
             $reflector
         )
     ),
-	'(^[f].*)'
+	'(^f)'
 );
 
 $distillate = new Distillate;
