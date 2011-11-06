@@ -1,8 +1,9 @@
 <?php
-class NoOldStyleConstructorIterator extends FilterIterator
+namespace com\github\gooh\InterfaceDistiller\Filters;
+class NoOldStyleConstructorIterator extends \FilterIterator
 {
     /**
-     * @see FilterIterator::accept()
+     * @see \FilterIterator::accept()
      * @return bool
      */
     public function accept()

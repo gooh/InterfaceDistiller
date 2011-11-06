@@ -1,4 +1,5 @@
 <?php
+namespace com\github\gooh\InterfaceDistiller\Distillate;
 interface Mutators
 {
     /**
@@ -14,8 +15,8 @@ interface Mutators
     public function setExtendingInterfaces($commaSeparatedInterfaceNames);
 
     /**
-     * @param ReflectionMethod $reflectionMethod
+     * @param \ReflectionMethod $reflectionMethod
      * @return void
      */
-    public function addMethod(ReflectionMethod $reflectionMethod);
+    public function addMethod(\ReflectionMethod $reflectionMethod);
 }

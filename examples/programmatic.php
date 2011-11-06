@@ -1,14 +1,15 @@
 <?php
+namespace com\github\gooh\InterfaceDistiller;
 include '../src/autoload.php';
 
-$reflector = new ReflectionClass('SplFileObject');
+$reflector = new \ReflectionClass('SplFileObject');
 
-$methodIterator = new RegexMethodIterator(
-    new NoImplementedMethodsIterator(
-        new NoInheritedMethodsIterator(
-            new NoOldStyleConstructorIterator(
-                new NoMagicMethodsIterator(
-                    new ArrayIterator($reflector->getMethods())
+$methodIterator = new Filters\RegexMethodIterator(
+    new Filters\NoImplementedMethodsIterator(
+        new Filters\NoInheritedMethodsIterator(
+            new Filters\NoOldStyleConstructorIterator(
+                new Filters\NoMagicMethodsIterator(
+                    new \ArrayIterator($reflector->getMethods())
                 )
             ),
             $reflector
@@ -24,8 +25,8 @@ foreach ($methodIterator as $method) {
     $distillate->addMethod($method);
 }
 
-$file = new SplTempFileObject(-1);
-$writer = new Writer($file);
+$file = new \SplTempFileObject(-1);
+$writer = new Distillate\Writer($file);
 $writer->writeToFile($distillate);
 $file->rewind();
 $file->fpassthru();

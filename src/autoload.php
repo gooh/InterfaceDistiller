@@ -7,17 +7,17 @@ spl_autoload_register(
       static $classes = null;
       if ($classes === null) {
          $classes = array(
-            'accessors' => '/Distillate/Accessors.php',
-            'distillate' => '/Distillate/Distillate.php',
-            'interfacedistiller' => '/InterfaceDistiller.php',
-            'mutators' => '/Distillate/Mutators.php',
-            'noimplementedmethodsiterator' => '/Filters/NoImplementedMethodsIterator.php',
-            'noinheritedmethodsiterator' => '/Filters/NoInheritedMethodsIterator.php',
-            'nomagicmethodsiterator' => '/Filters/NoMagicMethodsIterator.php',
-            'nooldstyleconstructoriterator' => '/Filters/NoOldStyleConstructorIterator.php',
-            'notraitmethodsiterator' => '/Filters/NoTraitMethodsIterator.php',
-            'regexmethoditerator' => '/Filters/RegexMethodIterator.php',
-            'writer' => '/Distillate/Writer.php'
+            'com\\github\\gooh\\interfacedistiller\\distillate' => '/Distillate/Distillate.php',
+            'com\\github\\gooh\\interfacedistiller\\distillate\\accessors' => '/Distillate/Accessors.php',
+            'com\\github\\gooh\\interfacedistiller\\distillate\\mutators' => '/Distillate/Mutators.php',
+            'com\\github\\gooh\\interfacedistiller\\distillate\\writer' => '/Distillate/Writer.php',
+            'com\\github\\gooh\\interfacedistiller\\filters\\noimplementedmethodsiterator' => '/Filters/NoImplementedMethodsIterator.php',
+            'com\\github\\gooh\\interfacedistiller\\filters\\noinheritedmethodsiterator' => '/Filters/NoInheritedMethodsIterator.php',
+            'com\\github\\gooh\\interfacedistiller\\filters\\nomagicmethodsiterator' => '/Filters/NoMagicMethodsIterator.php',
+            'com\\github\\gooh\\interfacedistiller\\filters\\nooldstyleconstructoriterator' => '/Filters/NoOldStyleConstructorIterator.php',
+            'com\\github\\gooh\\interfacedistiller\\filters\\notraitmethodsiterator' => '/Filters/NoTraitMethodsIterator.php',
+            'com\\github\\gooh\\interfacedistiller\\filters\\regexmethoditerator' => '/Filters/RegexMethodIterator.php',
+            'com\\github\\gooh\\interfacedistiller\\interfacedistiller' => '/InterfaceDistiller.php'
           );
       }
       $cn = strtolower($class);

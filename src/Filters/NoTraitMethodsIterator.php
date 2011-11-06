@@ -1,8 +1,9 @@
 <?php
-class NoTraitMethodsIterator extends FilterIterator
+namespace com\github\gooh\InterfaceDistiller\Filters;
+class NoTraitMethodsIterator extends \FilterIterator
 {
     /**
-     * @see FilterIterator::accept()
+     * @see \FilterIterator::accept()
      * @return bool
      */
     public function accept()

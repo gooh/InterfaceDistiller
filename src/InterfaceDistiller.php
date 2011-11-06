@@ -1,8 +1,9 @@
 <?php
+namespace com\github\gooh\InterfaceDistiller;
 class InterfaceDistiller
 {
     /**
-     * @var Mutators
+     * @var Distillate
      */
     protected $distillate;
 
@@ -47,7 +48,7 @@ class InterfaceDistiller
     protected $pcrePattern;
 
     /**
-     * @var SplFileObject
+     * @var \SplFileObject
      */
     protected $saveAs;
 
@@ -56,7 +57,7 @@ class InterfaceDistiller
      */
     public function __construct()
     {
-        $this->distillate = new Distillate;
+        $this->distillate = new Distillate();
     }
 
     /**
@@ -155,10 +156,10 @@ class InterfaceDistiller
     }
 
     /**
-     * @param SplFileObject $fileObject
+     * @param \SplFileObject $fileObject
      * @return InterfaceDistiller
      */
-    public function saveAs(SplFileObject $fileObject)
+    public function saveAs(\SplFileObject $fileObject)
     {
         $this->saveAs = $fileObject;
         return $this;
@@ -169,34 +170,34 @@ class InterfaceDistiller
      */
     public function distill()
     {
-        $reflector = new ReflectionClass($this->reflectionClass);
-        $iterator = new ArrayIterator(
+        $reflector = new \ReflectionClass($this->reflectionClass);
+        $iterator = new \ArrayIterator(
             $reflector->getMethods($this->methodModifiers)
         );
 
         if ($this->pcrePattern) {
-            $iterator = new RegexMethodIterator($iterator, $this->pcrePattern);
+            $iterator = new Filters\RegexMethodIterator($iterator, $this->pcrePattern);
         }
         if ($this->excludeImplementedMethods) {
-            $iterator = new NoImplementedMethodsIterator($iterator);
+            $iterator = new Filters\NoImplementedMethodsIterator($iterator);
         }
         if ($this->excludeInheritedMethods) {
-            $iterator = new NoInheritedMethodsIterator($iterator, $reflector);
+            $iterator = new Filters\NoInheritedMethodsIterator($iterator, $reflector);
         }
         if ($this->excludeOldStyleConstructors) {
-            $iterator = new NoOldStyleConstructorIterator($iterator);
+            $iterator = new Filters\NoOldStyleConstructorIterator($iterator);
         }
         if ($this->excludeMagicMethods) {
-            $iterator = new NoMagicMethodsIterator($iterator);
+            $iterator = new Filters\NoMagicMethodsIterator($iterator);
         }
         if ($this->excludeTraitMethods) {
-            $iterator = new NoTraitMethodsIterator($iterator);
+            $iterator = new Filters\NoTraitMethodsIterator($iterator);
         }
         foreach ($iterator as $method) {
             $this->distillate->addMethod($method);
         }
 
-        $writer = new Writer($this->saveAs);
+        $writer = new Distillate\Writer($this->saveAs);
         $writer->writeToFile($this->distillate);
     }
 }

@@ -1,8 +1,9 @@
 <?php
+namespace com\github\gooh\InterfaceDistiller\Distillate;
 class Writer
 {
     /**
-     * @var SplFileObject
+     * @var \SplFileObject
      */
     protected $fileObject;
 
@@ -10,7 +11,7 @@ class Writer
      * @param string $interfaceName
      * @return void
      */
-    public function __construct(SplFileObject $fileObject)
+    public function __construct(\SplFileObject $fileObject)
     {
         $this->fileObject = $fileObject;
     }
@@ -71,10 +72,10 @@ class Writer
     }
 
     /**
-     * @param ReflectionMethod $method
+     * @param \ReflectionMethod $method
      * @return void
      */
-    protected function writeMethod(ReflectionMethod $method)
+    protected function writeMethod(\ReflectionMethod $method)
     {
         $this->fileObject->fwrite(
             sprintf(
@@ -88,10 +89,10 @@ class Writer
     }
 
     /**
-     * @param ReflectionMethod $method
+     * @param \ReflectionMethod $method
      * @return void
      */
-    protected function writeDocCommentOfMethod(ReflectionMethod $method)
+    protected function writeDocCommentOfMethod(\ReflectionMethod $method)
     {
         if ($method->getDocComment()) {
             $this->fileObject->fwrite($method->getDocComment());
@@ -100,10 +101,10 @@ class Writer
     }
 
     /**
-     * @param ReflectionMethod $method
+     * @param \ReflectionMethod $method
      * @return string
      */
-    protected function methodParametersToString(ReflectionMethod $method)
+    protected function methodParametersToString(\ReflectionMethod $method)
     {
         return implode(', ', array_map(
             array($this, 'parameterToString'),
@@ -112,15 +113,15 @@ class Writer
     }
 
     /**
-     * @param ReflectionParameter $parameter
+     * @param \ReflectionParameter $parameter
      * @return string
      */
-    protected function parameterToString(ReflectionParameter $parameter)
+    protected function parameterToString(\ReflectionParameter $parameter)
     {
         return trim(
             sprintf(
             	'%s%s %s$%s%s',
-                $parameter->getClass() ? $parameter->getClass()->name : '',
+                $parameter->getClass() ? $this->resolveTypeHint($parameter) : '',
                 $parameter->isArray() ? 'array' : '',
                 $parameter->isPassedByReference() ? '&' : '',
                 $parameter->name,
@@ -137,6 +138,21 @@ class Writer
                     ) : ''
             )
         );
+    }
+
+    /**
+     * @param \ReflectionParameter $reflectionParameter
+     * @return string
+     */
+    protected function resolveTypeHint(\ReflectionParameter $reflectionParameter)
+    {
+        if ($reflectionParameter->getDeclaringClass()->inNamespace()) {
+            $typeHint = $reflectionParameter->getClass();
+            return $typeHint->isInternal()
+                ? '\\' . $typeHint->getName()
+                : $typeHint->getName();
+        }
+        return $reflectionParameter->getClass();
     }
 
     /**

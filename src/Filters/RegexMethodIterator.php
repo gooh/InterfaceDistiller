@@ -1,5 +1,6 @@
 <?php
-class RegexMethodIterator extends FilterIterator
+namespace com\github\gooh\InterfaceDistiller\Filters;
+class RegexMethodIterator extends \FilterIterator
 {
     /**
      * @var string
@@ -7,17 +8,17 @@ class RegexMethodIterator extends FilterIterator
     protected $pcrePattern;
 
     /**
-     * @param Iterator $iterator
+     * @param \Iterator $iterator
      * @param string $pcrePattern
      */
-    public function __construct(Iterator $iterator, $pcrePattern)
+    public function __construct(\Iterator $iterator, $pcrePattern)
     {
         $this->pcrePattern = $pcrePattern;
         parent::__construct($iterator);
     }
 
     /**
-     * @see FilterIterator::accept()
+     * @see \FilterIterator::accept()
      * @return bool
      */
     public function accept()

@@ -1,5 +1,6 @@
 <?php
-class Distillate implements Accessors, Mutators
+namespace com\github\gooh\InterfaceDistiller;
+class Distillate implements Distillate\Accessors, Distillate\Mutators
 {
     /**
      * @var string
@@ -12,7 +13,7 @@ class Distillate implements Accessors, Mutators
     protected $extendingInterfaces;
 
     /**
-     * @var SplObjectStorage
+     * @var \SplObjectStorage
      */
     protected $interfaceMethods;
 
@@ -23,11 +24,11 @@ class Distillate implements Accessors, Mutators
     {
         $this->interfaceName = 'MyInterface';
         $this->extendingInterfaces = '';
-        $this->interfaceMethods = new SplObjectStorage;
+        $this->interfaceMethods = new \SplObjectStorage;
     }
 
     /**
-     * @see InterfaceMutators::setInterfaceName()
+     * @see Distillate\Mutators::setInterfaceName()
      */
     public function setInterfaceName($interfaceName)
     {
@@ -35,7 +36,7 @@ class Distillate implements Accessors, Mutators
     }
 
     /**
-     * @see InterfaceMutators::setExtendingInterfaces()
+     * @see Distillate\Mutators::setExtendingInterfaces()
      */
     public function setExtendingInterfaces($commaSeparatedInterfaceNames)
     {
@@ -43,15 +44,15 @@ class Distillate implements Accessors, Mutators
     }
 
     /**
-     * @see InterfaceMutators::addMethod()
+     * @see Distillate\Mutators::addMethod()
      */
-    public function addMethod(ReflectionMethod $reflectionMethod)
+    public function addMethod(\ReflectionMethod $reflectionMethod)
     {
         $this->interfaceMethods->attach($reflectionMethod);
     }
 
     /**
-     * @see InterfaceAccessors::getInterfaceName()
+     * @see Distillate\Accessors::getInterfaceName()
      */
     public function getInterfaceName()
     {
@@ -59,7 +60,7 @@ class Distillate implements Accessors, Mutators
     }
 
     /**
-     * @see InterfaceAccessors::getInterfaceMethods()
+     * @see Distillate\Accessors::getInterfaceMethods()
      */
     public function getInterfaceMethods()
     {
@@ -67,7 +68,7 @@ class Distillate implements Accessors, Mutators
     }
 
     /**
-     * @see InterfaceAccessors::getExtendingInterfaces()
+     * @see Distillate\Accessors::getExtendingInterfaces()
      */
     public function getExtendingInterfaces()
     {
