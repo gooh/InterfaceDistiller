@@ -2,10 +2,20 @@
 <phpunit 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="phpunit.xsd"
-    bootstrap="bootstrap.php">
+    bootstrap="bootstrap.php"
+    colors="true">
 	<testsuites>
 	  <testsuite name="InterfaceDistiller">
-	    <directory suffix="Test.php">src</directory>
+	    <directory suffix="Test.php">../src/</directory>
 	  </testsuite>
 	</testsuites>
+    <filter>
+      <whitelist addUncoveredFilesFromWhitelist="true">
+        <directory suffix=".php">../src/</directory>
+        <exclude>
+          <file>../src/autoload.php</file>
+        </exclude>
+      </whitelist>
+    </filter>
+
 </phpunit>

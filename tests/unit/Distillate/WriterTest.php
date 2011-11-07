@@ -2,6 +2,11 @@
 namespace com\github\gooh\InterfaceDistiller\Tests\Distillate;
 use \com\github\gooh\InterfaceDistiller\Distillate\Writer as Writer;
 require __DIR__ . '/_files/TestClass.php';
+
+/**
+ * @covers \com\github\gooh\InterfaceDistiller\Distillate\Writer::<!public>
+ * @covers \com\github\gooh\InterfaceDistiller\Distillate\Writer::__construct
+ */
 class WriterTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -17,16 +22,14 @@ class WriterTest extends \PHPUnit_Framework_TestCase
     /**
      * @return void
      */
-    public function setup()
+    public function setUp()
     {
         $this->fileObject = new \SplTempFileObject(-1);
         $this->writer = new Writer($this->fileObject);
     }
 
     /**
-     * @covers Writer::writeToFile
-     * @covers Writer::__construct
-     * @covers Writer::<!public>
+     * @covers \com\github\gooh\InterfaceDistiller\Distillate\Writer::writeToFile
      */
     public function testWritingInitialStateWritesMinimalInterface()
     {
@@ -66,9 +69,7 @@ class WriterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Writer::writeToFile
-     * @covers Writer::__construct
-     * @covers Writer::<!public>
+     * @covers \com\github\gooh\InterfaceDistiller\Distillate\Writer::writeToFile
      */
     public function testWrittenInterfaceContainsAllExtendedInterfaceNames()
     {
@@ -78,9 +79,7 @@ class WriterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Writer::writeToFile
-     * @covers Writer::__construct
-     * @covers Writer::<!public>
+     * @covers \com\github\gooh\InterfaceDistiller\Distillate\Writer::writeToFile
      * @dataProvider provideReflectionMethodsAndExpectedSignatures
      * @param \ReflectionMethod $method
      * @param string $expectedSignature
@@ -118,9 +117,7 @@ class WriterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Writer::writeToFile
-     * @covers Writer::__construct
-     * @covers Writer::<!public>
+     * @covers \com\github\gooh\InterfaceDistiller\Distillate\Writer::writeToFile
      */
     public function testWrittenMethodsContainExistingDocBlocks()
     {
