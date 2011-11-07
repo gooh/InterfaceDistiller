@@ -10,7 +10,7 @@ class DistillateTest extends \PHPUnit_Framework_TestCase
     /**
      * @return void
      */
-    public function __construct()
+    public function setup()
     {
         $this->distillate = new \com\github\gooh\InterfaceDistiller\Distillate;
     }
