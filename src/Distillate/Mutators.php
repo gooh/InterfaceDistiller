@@ -1,5 +1,6 @@
 <?php
 namespace com\github\gooh\InterfaceDistiller\Distillate;
+//@codeCoverageIgnoreStart
 interface Mutators
 {
     /**
@@ -20,3 +21,4 @@ interface Mutators
      */
     public function addMethod(\ReflectionMethod $reflectionMethod);
 }
+//@codeCoverageIgnoreEnd

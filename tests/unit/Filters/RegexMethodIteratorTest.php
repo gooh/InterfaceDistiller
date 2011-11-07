@@ -1,12 +1,9 @@
 <?php
 namespace com\github\gooh\InterfaceDistiller\Tests\Filters;
-require_once 'FilterIteratorTestCase.php';
-class NoTraitMethodsIteratorTest extends FilterIteratorTestCase
+
+class RegexMethodIteratorTest extends FilterIteratorTestCase
 {
-    /**
-     * @requires PHP 5.4
-     */
-    public function testIteratorWillFilterTraitMethods()
+    public function testIteratorWillFilterMethodsByRegex()
     {
         $this->assertFilterIteratorContains(
             $this->addTraitMethodWhenSupported(
@@ -14,11 +11,19 @@ class NoTraitMethodsIteratorTest extends FilterIteratorTestCase
                     $this->getTestClassMethod('foo'),
                     $this->gettestClassMethod('__construct'),
                     $this->getTestClassMethod('TestClass'),
-                    $this->getTestClassMethod('implementedMethod'),
-                    $this->getTestClassMethod('inheritedMethod'),
                     $this->getTestClassMethod('SomeClass'),
                 )
             )
+        );
+    }
+    /**
+     * @see FilterIteratorTestCase::createFilterIterator()
+     */
+    protected function createFilterIterator(\Iterator $methodIterator)
+    {
+        return new \com\github\gooh\InterfaceDistiller\Filters\RegexMethodIterator(
+            $methodIterator,
+            '(^[^i].*)'
         );
     }
 }

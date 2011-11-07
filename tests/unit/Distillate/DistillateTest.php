@@ -1,5 +1,10 @@
 <?php
-namespace com\github\gooh\InterfaceDistiller\Tests;
+namespace com\github\gooh\InterfaceDistiller;
+
+/**
+ * @covers \com\github\gooh\InterfaceDistiller\Distillate::<!public>
+ * @covers \com\github\gooh\InterfaceDistiller\Distillate::__construct
+ */
 class DistillateTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -16,8 +21,7 @@ class DistillateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Distillate::__construct
-     * @covers Distillate::getInterfaceName
+     * @covers \com\github\gooh\InterfaceDistiller\Distillate::getInterfaceName
      */
     public function testNewDistillateHasDefaultInterfaceName()
     {
@@ -25,8 +29,7 @@ class DistillateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Distillate::__construct
-     * @covers Distillate::getExtendingInterfaces
+     * @covers \com\github\gooh\InterfaceDistiller\Distillate::getExtendingInterfaces
      */
     public function testNewDistillateDoesNotExtendAnyInterfaces()
     {
@@ -34,8 +37,7 @@ class DistillateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Distillate::__construct
-     * @covers Distillate::getInterfaceMethods
+     * @covers \com\github\gooh\InterfaceDistiller\Distillate::getInterfaceMethods
      */
     public function testNewDistillateDoesNotHaveAnyInterfaceMethods()
     {
@@ -43,8 +45,8 @@ class DistillateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Distillate::getInterfaceName
-     * @covers Distillate::setInterfaceName
+     * @covers \com\github\gooh\InterfaceDistiller\Distillate::getInterfaceName
+     * @covers \com\github\gooh\InterfaceDistiller\Distillate::setInterfaceName
      */
     public function testCanGetAndSetInterfaceName()
     {
@@ -53,8 +55,8 @@ class DistillateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Distillate::getExtendingInterfaces
-     * @covers Distillate::setExtendingInterfaces
+     * @covers \com\github\gooh\InterfaceDistiller\Distillate::getExtendingInterfaces
+     * @covers \com\github\gooh\InterfaceDistiller\Distillate::setExtendingInterfaces
      */
     public function testCanGetAndSetExtendingInterfaces()
     {
@@ -63,8 +65,7 @@ class DistillateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Distillate::getInterfaceMethods
-     * @covers Distillate::setInterfaceMethods
+     * @covers \com\github\gooh\InterfaceDistiller\Distillate::getInterfaceMethods
      */
     public function testCanGetAndSetInterfaceMethods()
     {

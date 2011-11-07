@@ -1,5 +1,6 @@
 <?php
 namespace com\github\gooh\InterfaceDistiller\Distillate;
+//@codeCoverageIgnoreStart
 interface Accessors
 {
     /**
@@ -17,3 +18,4 @@ interface Accessors
      */
     public function getExtendingInterfaces();
 }
+//@codeCoverageIgnoreEnd
