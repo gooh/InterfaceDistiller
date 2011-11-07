@@ -57,7 +57,7 @@ class Writer
      */
     protected function writeOpeningBrace()
     {
-		$this->fileObject->fwrite('{' . PHP_EOL);
+        $this->fileObject->fwrite('{' . PHP_EOL);
     }
 
     /**
