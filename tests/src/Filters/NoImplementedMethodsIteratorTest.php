@@ -1,6 +1,6 @@
 <?php
 namespace com\github\gooh\InterfaceDistiller\Tests\Filters;
-require_once 'FilterIteratorTestCase.php';
+
 class NoImplementedMethodsIteratorTest extends FilterIteratorTestCase
 {
     public function testIteratorWillFilterImplementedMethods()
