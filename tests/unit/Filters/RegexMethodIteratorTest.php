@@ -1,6 +1,8 @@
 <?php
 namespace com\github\gooh\InterfaceDistiller\Tests\Filters;
-
+/**
+ * @covers \com\github\gooh\InterfaceDistiller\Filters\RegexMethodIterator
+ */
 class RegexMethodIteratorTest extends FilterIteratorTestCase
 {
     public function testIteratorWillFilterMethodsByRegex()

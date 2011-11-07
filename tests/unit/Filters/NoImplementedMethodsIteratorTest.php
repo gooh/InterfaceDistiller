@@ -1,6 +1,8 @@
 <?php
 namespace com\github\gooh\InterfaceDistiller\Tests\Filters;
-
+/**
+ * @covers \com\github\gooh\InterfaceDistiller\Filters\NoImplementedMethodsIterator
+ */
 class NoImplementedMethodsIteratorTest extends FilterIteratorTestCase
 {
     public function testIteratorWillFilterImplementedMethods()

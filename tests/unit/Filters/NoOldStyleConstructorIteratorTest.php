@@ -1,4 +1,7 @@
 <?php
+/**
+ * @covers \com\github\gooh\InterfaceDistiller\Filters\NoOldStyleConstructorIterator
+ */
 namespace com\github\gooh\InterfaceDistiller\Tests\Filters;
 
 class NoOldStyleConstructorIteratorTest extends FilterIteratorTestCase

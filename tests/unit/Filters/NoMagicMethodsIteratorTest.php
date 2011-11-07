@@ -1,4 +1,7 @@
 <?php
+/**
+ * @covers \com\github\gooh\InterfaceDistiller\Filters\NoMagicMethodsIterator
+ */
 namespace com\github\gooh\InterfaceDistiller\Tests\Filters;
 
 class NoMagicMethodsIteratorTest extends FilterIteratorTestCase

@@ -1,6 +1,8 @@
 <?php
 namespace com\github\gooh\InterfaceDistiller\Tests\Filters;
-
+/**
+ * @covers \com\github\gooh\InterfaceDistiller\Filters\NoTraitMethodsIterator
+ */
 class NoTraitMethodsIteratorTest extends FilterIteratorTestCase
 {
     /**
