@@ -5,15 +5,16 @@
     bootstrap="bootstrap.php">
 	<testsuites>
 	  <testsuite name="InterfaceDistiller">
-	    <directory suffix="Test.php">../src/</directory>
+	    <directory suffix="Test.php">.</directory>
 	  </testsuite>
 	</testsuites>
     <filter>
       <whitelist addUncoveredFilesFromWhitelist="true">
-        <directory suffix=".php">../src/</directory>
+        <directory suffix=".php">../src</directory>
         <exclude>
           <file>../src/autoload.php</file>
         </exclude>
       </whitelist>
     </filter>
+
 </phpunit>
