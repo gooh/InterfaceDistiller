@@ -71,7 +71,7 @@ class InterfaceDistiller
     }
 
     /**
-     * @param  integer $className
+     * @param  integer $reflectionMethodModifiersMask
      * @return InterfaceDistiller
      */
     public function methodsWithModifiers($reflectionMethodModifiersMask)

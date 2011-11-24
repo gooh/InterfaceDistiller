@@ -95,4 +95,13 @@ abstract class FilterIteratorTestCase extends \PHPUnit_Framework_TestCase
     {
         return $this->testClassName;
     }
+
+    /**
+     * @param string $testClassName
+     * @return void
+     */
+    public function setTestClassName($testClassName)
+    {
+        $this->testClassName = $testClassName;
+    }
 }

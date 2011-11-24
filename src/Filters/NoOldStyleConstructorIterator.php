@@ -8,6 +8,18 @@ class NoOldStyleConstructorIterator extends \FilterIterator
      */
     public function accept()
     {
+        if ($this->current()->getDeclaringClass()->inNamespace()) {
+            return true;
+        } else {
+            return $this->hasMethodNamedAfterClass();
+        }
+    }
+
+    /**
+     * @return boolean
+     */
+    protected function hasMethodNamedAfterClass()
+    {
         return strcasecmp(
             $this->current()->name,
             $this->current()->getDeclaringClass()->getShortName()
