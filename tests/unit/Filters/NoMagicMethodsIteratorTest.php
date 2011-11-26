@@ -2,7 +2,7 @@
 /**
  * @covers \com\github\gooh\InterfaceDistiller\Filters\NoMagicMethodsIterator
  */
-namespace com\github\gooh\InterfaceDistiller\Tests\Filters;
+namespace com\github\gooh\InterfaceDistiller\Filters;
 
 class NoMagicMethodsIteratorTest extends FilterIteratorTestCase
 {

@@ -1,5 +1,5 @@
 <?php
-namespace com\github\gooh\InterfaceDistiller\Tests\Distillate;
+namespace com\github\gooh\InterfaceDistiller\Distillate;
 use \com\github\gooh\InterfaceDistiller\Distillate\Writer as Writer;
 require __DIR__ . '/_files/TestClass.php';
 

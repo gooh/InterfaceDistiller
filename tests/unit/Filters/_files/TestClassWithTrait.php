@@ -1,5 +1,5 @@
 <?php
-namespace com\github\gooh\InterfaceDistiller\Tests\Filters;
+namespace com\github\gooh\InterfaceDistiller\Filters;
 abstract class TestClass extends SomeClass implements SomeInterface
 {
     use SomeTrait;

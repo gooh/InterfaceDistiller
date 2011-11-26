@@ -1,5 +1,5 @@
 <?php
-namespace com\github\gooh\InterfaceDistiller\Tests\Distillate;
+namespace com\github\gooh\InterfaceDistiller\Distillate;
 class TestClass
 {
     const FOO = 1;

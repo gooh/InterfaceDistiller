@@ -1,5 +1,5 @@
 <?php
-namespace com\github\gooh\InterfaceDistiller\Tests\Filters;
+namespace com\github\gooh\InterfaceDistiller\Filters;
 /**
  * @covers \com\github\gooh\InterfaceDistiller\Filters\NoTraitMethodsIterator
  */

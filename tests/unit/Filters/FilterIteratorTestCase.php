@@ -1,5 +1,5 @@
 <?php
-namespace com\github\gooh\InterfaceDistiller\Tests\Filters;
+namespace com\github\gooh\InterfaceDistiller\Filters;
 
 version_compare(phpversion(), '5.4', '<')
     ? require_once __DIR__ . '/_files/TestClass.php'
