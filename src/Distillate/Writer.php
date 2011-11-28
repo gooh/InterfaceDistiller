@@ -66,7 +66,7 @@ class Writer
     protected function writeMethods(array $methods)
     {
         foreach ($methods as $method) {
-            $this->fileObject->fwrite($this->writeMethod($method));
+            $this->writeMethod($method);
             $this->fileObject->fwrite(PHP_EOL);
         }
     }
