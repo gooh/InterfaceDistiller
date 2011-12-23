@@ -17,6 +17,7 @@ spl_autoload_register(
             'com\\github\\gooh\\interfacedistiller\\filters\\nooldstyleconstructoriterator' => '/Filters/NoOldStyleConstructorIterator.php',
             'com\\github\\gooh\\interfacedistiller\\filters\\notraitmethodsiterator' => '/Filters/NoTraitMethodsIterator.php',
             'com\\github\\gooh\\interfacedistiller\\filters\\regexmethoditerator' => '/Filters/RegexMethodIterator.php',
+            'com\\github\\gooh\\interfacedistiller\\cli' => '/CLI.php',
             'com\\github\\gooh\\interfacedistiller\\interfacedistiller' => '/InterfaceDistiller.php'
           );
       }
