@@ -104,14 +104,12 @@
 
  <target name="phpcs-ci"
          description="Find coding standard violations using PHP_CodeSniffer">
-  <!--       
   <exec executable="phpcs" output="/dev/null">
    <arg value="- -report=checkstyle" />
    <arg value="- -report-file=${basedir}/build/logs/checkstyle.xml" />
    <arg value="- -standard=${basedir}/build/phpcs.xml" />
    <arg path="${basedir}/src" />
   </exec>
-  -->
  </target>
 
  <target name="phpcpd" description="Find duplicate code using PHPCPD">
