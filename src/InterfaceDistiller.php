@@ -62,12 +62,20 @@ class InterfaceDistiller
 
     /**
      * @param  string $className
-     * @return InterfaceDistiller
+     * @return void
      */
     protected function distillFromClass($className)
     {
         $this->reflectionClass = $className;
-        return $this;
+    }
+
+    /**
+     * @param  string $interfaceName
+     * @return void
+     */
+    protected function distillIntoInterface($interfaceName)
+    {
+        $this->distillate->setInterfaceName($interfaceName);
     }
 
     /**
@@ -77,16 +85,6 @@ class InterfaceDistiller
     public function methodsWithModifiers($reflectionMethodModifiersMask)
     {
         $this->methodModifiers = $reflectionMethodModifiersMask;
-        return $this;
-    }
-
-    /**
-     * @param  string $interfaceName
-     * @return InterfaceDistiller
-     */
-    protected function intoInterface($interfaceName)
-    {
-        $this->distillate->setInterfaceName($interfaceName);
         return $this;
     }
 
@@ -173,7 +171,7 @@ class InterfaceDistiller
     public function distill($fromClassName, $intoInterfaceName)
     {
         $this->distillFromClass($fromClassName);
-        $this->intoInterface($intoInterfaceName);
+        $this->distillIntoInterface($intoInterfaceName);
         $this->prepareDistillate();
         $this->writeDistillate();
     }
