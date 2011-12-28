@@ -22,22 +22,14 @@ class Writer
      */
     public function writeToFile(Accessors $interface)
     {
-        $this->writePhpOpeningTag();
+        $this->fileObject->fwrite('<?php' . PHP_EOL);
         $this->writeInterfaceSignature(
             $interface->getInterfaceName(),
             $interface->getExtendingInterfaces()
         );
-        $this->writeOpeningBrace();
+        $this->fileObject->fwrite('{' . PHP_EOL);
         $this->writeMethods($interface->getInterfaceMethods());
-        $this->writeClosingBrace();
-    }
-
-    /**
-     * @return void
-     */
-    protected function writePhpOpeningTag()
-    {
-        $this->fileObject->fwrite('<?php' . PHP_EOL);
+        $this->fileObject->fwrite('}');
     }
 
     /**
@@ -50,14 +42,6 @@ class Writer
             $this->fileObject->fwrite(" extends {$extendingInterfaces}");
         }
         $this->fileObject->fwrite(PHP_EOL);
-    }
-
-    /**
-     * @return void
-     */
-    protected function writeOpeningBrace()
-    {
-        $this->fileObject->fwrite('{' . PHP_EOL);
     }
 
     /**
@@ -153,13 +137,5 @@ class Writer
                 : $typeHint->getName();
         }
         return $reflectionParameter->getClass();
-    }
-
-    /**
-     * @return void
-     */
-    protected function writeClosingBrace()
-    {
-        $this->fileObject->fwrite('}');
     }
 }
