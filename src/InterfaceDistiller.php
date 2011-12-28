@@ -15,7 +15,7 @@ class InterfaceDistiller
     /**
      * @var integer
      */
-    protected $methodModifiers;
+    protected $methodModifiers = \ReflectionMethod::IS_PUBLIC;
 
     /**
      * @var boolean
@@ -64,7 +64,7 @@ class InterfaceDistiller
      * @param  string $className
      * @return InterfaceDistiller
      */
-    public function distillFromClass($className)
+    protected function distillFromClass($className)
     {
         $this->reflectionClass = $className;
         return $this;
@@ -84,7 +84,7 @@ class InterfaceDistiller
      * @param  string $interfaceName
      * @return InterfaceDistiller
      */
-    public function intoInterface($interfaceName)
+    protected function intoInterface($interfaceName)
     {
         $this->distillate->setInterfaceName($interfaceName);
         return $this;
@@ -166,22 +166,30 @@ class InterfaceDistiller
     }
 
     /**
+     * @param string $fromClassName
+     * @param string $intoInterfaceName
      * @return void
      */
-    public function distill()
+    public function distill($fromClassName, $intoInterfaceName)
+    {
+        $this->distillFromClass($fromClassName);
+        $this->intoInterface($intoInterfaceName);
+        $this->prepareDistillate();
+        $this->writeDistillate();
+    }
+
+    /**
+     * @return void
+     */
+    protected function prepareDistillate()
     {
         $reflector = new \ReflectionClass($this->reflectionClass);
         $iterator = new \ArrayIterator(
             $reflector->getMethods($this->methodModifiers)
         );
-        $iterator = $this->decorateMethodIterator($iterator, $reflector);
-
-        foreach ($iterator as $method) {
+        foreach ($this->decorateMethodIterator($iterator, $reflector) as $method) {
             $this->distillate->addMethod($method);
         }
-
-        $writer = new Distillate\Writer($this->saveAs);
-        $writer->writeToFile($this->distillate);
     }
 
 	/**
@@ -210,6 +218,15 @@ class InterfaceDistiller
             $iterator = new Filters\NoTraitMethodsIterator($iterator);
         }
         return $iterator;
+    }
+
+    /**
+     * @return void
+     */
+    protected function writeDistillate()
+    {
+        $writer = new Distillate\Writer($this->saveAs);
+        $writer->writeToFile($this->distillate);
     }
 
 }
