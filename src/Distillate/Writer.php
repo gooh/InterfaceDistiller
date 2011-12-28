@@ -109,17 +109,7 @@ class Writer
                 $parameter->isArray() ? 'array' : '',
                 $parameter->isPassedByReference() ? '&' : '',
                 $parameter->name,
-                $parameter->isOptional()
-                    ? ($parameter->isArray()
-                        ? ' = array()'
-                        : ($parameter->isDefaultValueAvailable()
-                            ? (is_array($parameter->getDefaultValue())
-                                ? ' = array()'
-                                : ' = ' . $parameter->getDefaultValue()
-                            )
-                            : ' = null'
-                        )
-                    ) : ''
+                $this->resolveDefaultValue($parameter)
             )
         );
     }
@@ -137,5 +127,24 @@ class Writer
                 : $typeHint->getName();
         }
         return $reflectionParameter->getClass();
+    }
+
+    /**
+     * @param \ReflectionParameter $parameter
+     * @return string
+     */
+    protected function resolveDefaultValue(\ReflectionParameter $parameter)
+    {
+        return $parameter->isOptional()
+            ? ($parameter->isArray()
+                ? ' = array()'
+                : ($parameter->isDefaultValueAvailable()
+                    ? (is_array($parameter->getDefaultValue())
+                        ? ' = array()'
+                        : ' = ' . $parameter->getDefaultValue()
+                    )
+                    : ' = null'
+                )
+            ) : '';
     }
 }
