@@ -174,7 +174,23 @@ class InterfaceDistiller
         $iterator = new \ArrayIterator(
             $reflector->getMethods($this->methodModifiers)
         );
+        $iterator = $this->decorateMethodIterator($iterator, $reflector);
 
+        foreach ($iterator as $method) {
+            $this->distillate->addMethod($method);
+        }
+
+        $writer = new Distillate\Writer($this->saveAs);
+        $writer->writeToFile($this->distillate);
+    }
+
+	/**
+     * @param \ArrayIterator $iterator
+     * @param \ReflectionMethod $reflector
+     * @return \Iterator
+     */
+    protected function decorateMethodIterator(\ArrayIterator $iterator, \ReflectionMethod $reflector)
+    {
         if ($this->pcrePattern) {
             $iterator = new Filters\RegexMethodIterator($iterator, $this->pcrePattern);
         }
@@ -193,11 +209,7 @@ class InterfaceDistiller
         if ($this->excludeTraitMethods) {
             $iterator = new Filters\NoTraitMethodsIterator($iterator);
         }
-        foreach ($iterator as $method) {
-            $this->distillate->addMethod($method);
-        }
-
-        $writer = new Distillate\Writer($this->saveAs);
-        $writer->writeToFile($this->distillate);
+        return $iterator;
     }
+
 }
