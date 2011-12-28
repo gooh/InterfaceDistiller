@@ -186,10 +186,10 @@ class InterfaceDistiller
 
 	/**
      * @param \ArrayIterator $iterator
-     * @param \ReflectionMethod $reflector
+     * @param \ReflectionClass $reflector
      * @return \Iterator
      */
-    protected function decorateMethodIterator(\ArrayIterator $iterator, \ReflectionMethod $reflector)
+    protected function decorateMethodIterator(\ArrayIterator $iterator, \ReflectionClass $reflector)
     {
         if ($this->pcrePattern) {
             $iterator = new Filters\RegexMethodIterator($iterator, $this->pcrePattern);
