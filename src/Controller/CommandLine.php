@@ -8,11 +8,6 @@ class CommandLine
     protected $interfaceDistiller;
 
     /**
-     * @var boolean
-     */
-    protected $printInterfaceToStream = true;
-
-    /**
      * @param \com\github\gooh\InterfaceDistiller\InterfaceDistiller $distiller
      * @return void
      */
@@ -33,14 +28,12 @@ class CommandLine
 
     /**
      * @param array $cliArguments
-     * @param resource $outputStream
+     * @param \SplFileObject $outputStream
      * @return void
      */
-    public function handleInput(array $cliArguments, $outputStream)
+    public function handleInput(array $cliArguments, \SplFileObject $outputStream)
     {
-        if (!$this->streamIsWritable($outputStream)) {
-            throw new \InvalidArgumentException('Output Stream must be a writable Stream');
-        }
+        $this->interfaceDistiller->saveAs($outputStream);
 
         $options = array();
         array_shift($cliArguments);
@@ -53,7 +46,6 @@ class CommandLine
                     $this->interfaceDistiller->$arg(array_shift($cliArguments));
                 	break;
                 case 'saveAs':
-                    $this->printInterfaceToStream = false;
                     $this->interfaceDistiller->$arg(
                         new \SplFileObject(array_shift($cliArguments))
                     );
@@ -70,21 +62,10 @@ class CommandLine
             }
         }
         if (count($options) === 2) {
-            if ($this->printInterfaceToStream) {
-                $outFile = new \SplTempFileObject(-1);
-                $this->interfaceDistiller->saveAs($outFile);
-                $this->interfaceDistiller->distill($options[0], $options[1]);
-                $outFile->rewind();
-                ob_start();
-                $outFile->fpassthru();
-                fwrite($outputStream, ob_get_clean());
-                fwrite($outputStream, PHP_EOL);
-            } else {
-                $this->interfaceDistiller->distill($options[0], $options[1]);
-            }
-            fwrite($outputStream, 'Done.' . PHP_EOL);
+            $this->interfaceDistiller->distill($options[0], $options[1]);
+            $outputStream->fwrite(PHP_EOL . 'Done.' . PHP_EOL);
         } else {
-            fwrite($outputStream, $this->getUsage() . PHP_EOL);
+            $outputStream->fwrite($this->getUsage() . PHP_EOL);
         }
     }
 

@@ -16,7 +16,7 @@ call_user_func(
         new com\github\gooh\InterfaceDistiller\InterfaceDistiller
     ),
     $argv,
-    STDOUT
+    new SplFileObject('php://stdout')
 );
 __HALT_COMPILER();
 STUB
