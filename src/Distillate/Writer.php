@@ -133,25 +133,27 @@ class Writer
     }
 
     /**
-     * @throws \ReflectionException When $parameter is optional without a default value
+     * @throws \RuntimeException When $parameter is optional without a default value
      * @param \ReflectionParameter $parameter
      * @return string
      */
     protected function resolveDefaultValue(\ReflectionParameter $parameter)
     {
-        if ($parameter->isOptional()) {
-            if ($parameter->isDefaultValueAvailable()) {
-                if (is_array($parameter->getDefaultValue())) {
-                    return ' = array()';
-                }
-                return ' = ' . $parameter->getDefaultValue();
-            }
-            throw new \RuntimeException(
-                sprintf(
-                	'Optional Parameter %s has no default value',
-                    $parameter->getName()
-                )
+        if (!$parameter->isOptional()) {
+            return;
+        }
+        if ($parameter->isDefaultValueAvailable()) {
+            return ' = ' . preg_replace(
+            	'(\s)',
+            	'',
+                var_export($parameter->getDefaultValue(), true)
             );
         }
+        throw new \RuntimeException(
+            sprintf(
+            	'Optional Parameter %s has no default value',
+                $parameter->getName()
+            )
+        );
     }
 }
