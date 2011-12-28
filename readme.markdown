@@ -8,7 +8,7 @@ InterfaceDistiller allows you to derive Interfaces from the API of a class.
 <?php
 $distiller = new InterfaceDistiller;
 $distiller
-    ->distillFromClass('SplFileObject')
+    ->distillFromClass('ConcreteFoo')
     ->methodsWithModifiers(\ReflectionMethod::IS_PUBLIC)
     ->intoInterface('MyInterface')
     ->extendInterfaceFrom('Iterator, SeekableIterator')
@@ -16,7 +16,7 @@ $distiller
     ->excludeInheritedMethods()
     ->excludeMagicMethods()
     ->excludeOldStyleConstructors()
-    ->filterMethodsByPattern('(^f)')
+    ->filterMethodsByPattern('(^get)')
     ->saveAs(new SplFileObject('MyInterface.php'))
     ->distill();
 ```        

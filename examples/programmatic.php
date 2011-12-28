@@ -2,7 +2,7 @@
 namespace com\github\gooh\InterfaceDistiller;
 include '../src/autoload.php';
 
-$reflector = new \ReflectionClass('SplFileObject');
+$reflector = new \ReflectionClass('ConcreteFoo');
 
 $methodIterator = new Filters\RegexMethodIterator(
     new Filters\NoImplementedMethodsIterator(
@@ -15,7 +15,7 @@ $methodIterator = new Filters\RegexMethodIterator(
             $reflector
         )
     ),
-	'(^f)'
+	'(^get)'
 );
 
 $distillate = new Distillate;

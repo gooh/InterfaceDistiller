@@ -4,7 +4,7 @@ include '../src/autoload.php';
 $outFile = new \SplTempFileObject(-1);
 $distiller = new InterfaceDistiller;
 $distiller
-    ->distillFromClass('SplFileObject')
+    ->distillFromClass('ConcreteFoo')
     ->methodsWithModifiers(\ReflectionMethod::IS_PUBLIC)
     ->intoInterface('MyInterface')
     ->extendInterfaceFrom('Iterator, SeekableIterator')
@@ -12,7 +12,7 @@ $distiller
     ->excludeInheritedMethods()
     ->excludeMagicMethods()
     ->excludeOldStyleConstructors()
-    ->filterMethodsByPattern('(^f)')
+    ->filterMethodsByPattern('(^get)')
     ->saveAs($outFile)
     ->distill();
 
