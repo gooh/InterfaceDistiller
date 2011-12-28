@@ -34,7 +34,24 @@ class CommandLine
     public function handleInput(array $cliArguments, \SplFileObject $outputStream)
     {
         $this->interfaceDistiller->saveAs($outputStream);
+        $unappliedOptions = $this->applyOptions($cliArguments);
+        if (count($unappliedOptions) === 2) {
+            $this->interfaceDistiller->distill(
+                $unappliedOptions[0],
+                $unappliedOptions[1]
+            );
+            $outputStream->fwrite(PHP_EOL . 'Done.' . PHP_EOL);
+        } else {
+            $outputStream->fwrite($this->getUsage() . PHP_EOL);
+        }
+    }
 
+    /**
+     * @param array $cliArguments
+     * @return array
+     */
+    protected function applyOptions(array $cliArguments)
+    {
         $options = array();
         array_shift($cliArguments);
         while (($arg = array_shift($cliArguments)) !== null) {
@@ -61,12 +78,7 @@ class CommandLine
                     break;
             }
         }
-        if (count($options) === 2) {
-            $this->interfaceDistiller->distill($options[0], $options[1]);
-            $outputStream->fwrite(PHP_EOL . 'Done.' . PHP_EOL);
-        } else {
-            $outputStream->fwrite($this->getUsage() . PHP_EOL);
-        }
+        return $options;
     }
 
     /**
@@ -76,16 +88,6 @@ class CommandLine
     protected function removePrefixDashes($string)
     {
         return ltrim($string, '-');
-    }
-
-    /**
-     * @param resource $stream
-     * @return bool
-     */
-    protected function streamIsWritable($stream)
-    {
-        $meta = stream_get_meta_data($stream);
-        return strpos($meta['mode'], 'w') !== false;
     }
 
     /**
