@@ -8,7 +8,7 @@ class Writer
     protected $fileObject;
 
     /**
-     * @param string $interfaceName
+     * @param \SplFileObject $fileObject
      * @return void
      */
     public function __construct(\SplFileObject $fileObject)
@@ -17,19 +17,28 @@ class Writer
     }
 
     /**
+     * @param string $string
+     * @return void
+     */
+    protected function writeString($string)
+    {
+        $this->fileObject->fwrite($string);
+    }
+
+    /**
      * @param Accessors $interface
      * @return void
      */
     public function writeToFile(Accessors $interface)
     {
-        $this->fileObject->fwrite('<?php' . PHP_EOL);
+        $this->writeString('<?php' . PHP_EOL);
         $this->writeInterfaceSignature(
             $interface->getInterfaceName(),
             $interface->getExtendingInterfaces()
         );
-        $this->fileObject->fwrite('{' . PHP_EOL);
+        $this->writeString('{' . PHP_EOL);
         $this->writeMethods($interface->getInterfaceMethods());
-        $this->fileObject->fwrite('}');
+        $this->writeString('}');
     }
 
     /**
@@ -37,11 +46,11 @@ class Writer
      */
     protected function writeInterfaceSignature($interfaceName, $extendingInterfaces = false)
     {
-        $this->fileObject->fwrite("interface {$interfaceName}");
+        $this->writeString("interface $interfaceName");
         if ($extendingInterfaces) {
-            $this->fileObject->fwrite(" extends {$extendingInterfaces}");
+            $this->writeString(" extends $extendingInterfaces");
         }
-        $this->fileObject->fwrite(PHP_EOL);
+        $this->writeString(PHP_EOL);
     }
 
     /**
@@ -51,7 +60,7 @@ class Writer
     {
         foreach ($methods as $method) {
             $this->writeMethod($method);
-            $this->fileObject->fwrite(PHP_EOL);
+            $this->writeString(PHP_EOL);
         }
     }
 
@@ -61,7 +70,7 @@ class Writer
      */
     protected function writeMethod(\ReflectionMethod $method)
     {
-        $this->fileObject->fwrite(
+        $this->writeString(
             sprintf(
             	'%s    public%sfunction %s(%s);',
                 $this->writeDocCommentOfMethod($method),
@@ -79,8 +88,8 @@ class Writer
     protected function writeDocCommentOfMethod(\ReflectionMethod $method)
     {
         if ($method->getDocComment()) {
-            $this->fileObject->fwrite($method->getDocComment());
-            $this->fileObject->fwrite(PHP_EOL);
+            $this->writeString($method->getDocComment());
+            $this->writeString(PHP_EOL);
         }
     }
 
