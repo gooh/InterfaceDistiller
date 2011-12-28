@@ -130,6 +130,17 @@ class WriterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @expectedException RuntimeException
+     * @return void
+     */
+    public function testCannotWriteOptionalParametersWithNoDefaultValue()
+    {
+        $method = array(new \ReflectionMethod('\SplFileObject', 'fgetcsv'));
+        $accessors = $this->stubInterfaceAccessors('', '', $method);
+        $this->writer->writeToFile($accessors);
+    }
+
+    /**
      * @param string $expectedContent
      * @param integer $zeroBasedLineNumber
      * @param boolean $trimLine

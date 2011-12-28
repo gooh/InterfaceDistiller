@@ -90,10 +90,13 @@ class Writer
      */
     protected function methodParametersToString(\ReflectionMethod $method)
     {
-        return implode(', ', array_map(
-            array($this, 'parameterToString'),
-            $method->getParameters()
-        ));
+        return implode(
+        	', ',
+            array_map(
+                array($this, 'parameterToString'),
+                $method->getParameters()
+            )
+        );
     }
 
     /**
@@ -130,21 +133,25 @@ class Writer
     }
 
     /**
+     * @throws \ReflectionException When $parameter is optional without a default value
      * @param \ReflectionParameter $parameter
      * @return string
      */
     protected function resolveDefaultValue(\ReflectionParameter $parameter)
     {
-        return $parameter->isOptional()
-            ? ($parameter->isArray()
-                ? ' = array()'
-                : ($parameter->isDefaultValueAvailable()
-                    ? (is_array($parameter->getDefaultValue())
-                        ? ' = array()'
-                        : ' = ' . $parameter->getDefaultValue()
-                    )
-                    : ' = null'
+        if ($parameter->isOptional()) {
+            if ($parameter->isDefaultValueAvailable()) {
+                if (is_array($parameter->getDefaultValue())) {
+                    return ' = array()';
+                }
+                return ' = ' . $parameter->getDefaultValue();
+            }
+            throw new \RuntimeException(
+                sprintf(
+                	'Optional Parameter %s has no default value',
+                    $parameter->getName()
                 )
-            ) : '';
+            );
+        }
     }
 }
