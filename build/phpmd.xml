@@ -65,7 +65,7 @@ http://edorian.github.com/php-coding-standard-generator/
 	</rule>
 	<rule ref="rulesets/naming.xml/ShortMethodName">
 		<properties>
-			<property name="minimum" value="5" />
+			<property name="minimum" value="3" />
 		</properties>
 	</rule>
 	<rule ref="rulesets/naming.xml/ConstructorWithNameAsEnclosingClass" />
