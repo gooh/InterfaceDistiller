@@ -11,8 +11,12 @@ $phar->setStub(<<<'STUB'
 <?php
 Phar::mapPhar('interfaceDistiller.phar');
 require 'phar://interfaceDistiller.phar/autoload.php';
-$cli = new \com\github\gooh\InterfaceDistiller\CLI();
-$cli->main(STDOUT, $argv);
+call_user_func_array(
+    new com\github\gooh\InterfaceDistiller\Controller\CommandLine(
+        new com\github\gooh\InterfaceDistiller\InterfaceDistiller
+    ),
+    array($argv, STDOUT)
+);
 __HALT_COMPILER();
 STUB
 );
