@@ -75,7 +75,6 @@ class CommandLine
                 	break;
                 default:
                     $options[] = $arg;
-                    break;
             }
         }
         return $options;

@@ -65,6 +65,7 @@ class DistillateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers \com\github\gooh\InterfaceDistiller\Distillate::addMethod
      * @covers \com\github\gooh\InterfaceDistiller\Distillate::getInterfaceMethods
      */
     public function testCanGetAndSetInterfaceMethods()
