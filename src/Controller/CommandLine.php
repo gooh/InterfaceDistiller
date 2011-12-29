@@ -100,14 +100,14 @@ Interface Distiller 1.0.0 by Gordon Oheim.
 
 Usage: phpdistill [options] <classname> <interfacename>
 
-  --methodsWithModifiers         A ReflectionMethod Visibility BitMask. Defaults to Public.
-  --extendInterfaceFrom          Comma-separated list of Interfaces to extend.
-  --excludeImplementedMethods    Will exclude all implemented methods.
-  --excludeInheritedMethods      Will exclude all inherited methods.
-  --excludeMagicMethods          Will exclude all magic methods.
-  --excludeOldStyleConstructors  Will exclude Legacy Constructors.
-  --filterMethodsByPattern       Only include methods matching PCRE pattern.
-  --saveAs                       Filename to save new Interface to.
+  --methodsWithModifiers <number>       A ReflectionMethod Visibility BitMask. Defaults to Public.
+  --extendInterfaceFrom  <name,...>     Comma-separated list of Interfaces to extend.
+  --excludeImplementedMethods           Will exclude all implemented methods.
+  --excludeInheritedMethods             Will exclude all inherited methods.
+  --excludeMagicMethods                 Will exclude all magic methods.
+  --excludeOldStyleConstructors         Will exclude Legacy Constructors.
+  --filterMethodsByPattern <pattern>    Only include methods matching PCRE pattern.
+  --saveAs                              Filename to save new Interface to.
 TXT;
     }
 }
