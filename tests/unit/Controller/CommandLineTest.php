@@ -28,7 +28,7 @@ class CommandLineTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \com\github\gooh\InterfaceDistiller\Controller\CommandLine\handleInput
+     * @covers \com\github\gooh\InterfaceDistiller\Controller\CommandLine::handleInput
      */
     public function testControllerConfiguresInterfaceDistillerWithCommandLineOptions()
     {
@@ -93,7 +93,7 @@ class CommandLineTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \com\github\gooh\InterfaceDistiller\Controller\CommandLine\handleInput
+     * @covers \com\github\gooh\InterfaceDistiller\Controller\CommandLine::handleInput
      */
     public function testControllerWritesInterfaceToOutputStreamWhenSaveAsOptionIsNotGiven()
     {
@@ -112,7 +112,7 @@ class CommandLineTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \com\github\gooh\InterfaceDistiller\Controller\CommandLine\handleInput
+     * @covers \com\github\gooh\InterfaceDistiller\Controller\CommandLine::handleInput
      */
     public function testControllerOutputsUsageInformationWhenRequiredArgumentsAreMissing()
     {
