@@ -37,7 +37,11 @@ http://edorian.github.com/php-coding-standard-generator/
 		</properties>
 	</rule>
 	<rule ref="rulesets/codesize.xml/TooManyFields" />
-	<rule ref="rulesets/codesize.xml/TooManyMethods" />
+	<rule ref="rulesets/codesize.xml/TooManyMethods">
+	   <properties>
+	       <property name="maxmethods" value="15"/>
+	   </properties>
+	</rule>
 	<rule ref="rulesets/codesize.xml/ExcessiveClassComplexity">
 		<properties>
 			<property name="maximum" value="40" />
