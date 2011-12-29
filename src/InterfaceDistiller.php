@@ -226,5 +226,4 @@ class InterfaceDistiller
         $writer = new Distillate\Writer($this->saveAs);
         $writer->writeToFile($this->distillate);
     }
-
 }

@@ -1,7 +1,6 @@
 <?php
 namespace com\github\gooh\InterfaceDistiller;
-include '../src/autoload.php';
-$outFile = new \SplTempFileObject(-1);
+include __DIR__ . '/../src/autoload.php';
 $distiller = new InterfaceDistiller;
 $distiller
     ->methodsWithModifiers(\ReflectionMethod::IS_PUBLIC)
@@ -11,8 +10,5 @@ $distiller
     ->excludeMagicMethods()
     ->excludeOldStyleConstructors()
     ->filterMethodsByPattern('(^get)')
-    ->saveAs($outFile)
+    ->saveAs('php://output')
     ->distill('SomeFoo', 'MyInterface');
-
-$outFile->rewind();
-$outFile->fpassthru();

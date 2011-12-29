@@ -1,6 +1,6 @@
 <?php
 namespace com\github\gooh\InterfaceDistiller;
-include '../src/autoload.php';
+include __DIR__ . '/../src/autoload.php';
 
 $reflector = new \ReflectionClass('ConcreteFoo');
 
