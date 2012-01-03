@@ -29,7 +29,7 @@ $distiller
 ### Example 2 - Using the Commandline Interface
 
 ```
-    Interface Distiller 1.0.0 by Gordon Oheim.
+    Interface Distiller 1.0.0
 
     Usage: phpdistill [options] <classname> <interfacename>
 
