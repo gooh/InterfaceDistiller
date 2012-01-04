@@ -28,23 +28,25 @@ class InterfaceDistillerTest extends \PHPUnit_Framework_TestCase
 
     public function testDistillUsingAllExcludeOptions()
     {
-        $this->interfaceDistillate->excludeImplementedMethods();
-        $this->interfaceDistillate->excludeInheritedMethods();
-        $this->interfaceDistillate->excludeMagicMethods();
-        $this->interfaceDistillate->excludeOldStyleConstructors();
-        $this->interfaceDistillate->distill(
-            '\\com\\github\\gooh\\InterfaceDistiller\\DistillTestClass', 
-            'DistillWithAllExcludeOptionsSetInterface'
+        $this->interfaceDistillate
+            ->excludeImplementedMethods()
+            ->excludeInheritedMethods()
+            ->excludeMagicMethods()
+            ->excludeOldStyleConstructors()
+            ->distill(
+                '\\com\\github\\gooh\\InterfaceDistiller\\DistillTestClass', 
+                'DistillWithAllExcludeOptionsSetInterface'
         );
         $this->assertDistillateEqualsExpectedFile('distillWithAllExcludeOptionsSetInterface.php');
     }
 
     public function testDistillUsingFilter()
     {
-        $this->interfaceDistillate->filterMethodsByPattern('(^public.+WithParameters$)');
-        $this->interfaceDistillate->distill(
-            '\\com\\github\\gooh\\InterfaceDistiller\\DistillTestClass',
-            'DistillWithFilterInterface'
+        $this->interfaceDistillate
+            ->filterMethodsByPattern('(^public.+WithParameters$)')
+            ->distill(
+                '\\com\\github\\gooh\\InterfaceDistiller\\DistillTestClass',
+                'DistillWithFilterInterface'
         );
         $this->assertDistillateEqualsExpectedFile('distillWithFilterInterface.php');
     }
