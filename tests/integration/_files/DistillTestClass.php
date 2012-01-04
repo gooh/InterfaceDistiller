@@ -1,7 +1,7 @@
 <?php
 namespace com\github\gooh\InterfaceDistiller;
 
-class DistillTestClass
+class DistillTestClass extends DistillTestClassBaseClass
 {
 
     public function __construct() {}
@@ -10,5 +10,10 @@ class DistillTestClass
     protected function protectedFunction() {}
     public static function publicStaticFunction() {}
     protected static function protectedStaticFunction() {}
+    public function __call($method, $args) {}
+}
 
+class DistillTestClassBaseClass
+{
+    public function publicBaseClassFunction() {}
 }
