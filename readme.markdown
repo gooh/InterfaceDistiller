@@ -45,7 +45,7 @@ Subsequent calls to `distill` will use the same configuration unless `reset` was
       --excludeMagicMethods                 Will exclude all magic methods.
       --excludeOldStyleConstructors         Will exclude Legacy Constructors.
       --filterMethodsByPattern <pattern>    Only include methods matching PCRE pattern.
-      --saveAs                              Filename to save new Interface to.
+      --saveAs                              Filename to save new Interface to. STDOUT if omitted.
 ```
 
 The Commandline Interface will always reset configuration between calls. This means you need 

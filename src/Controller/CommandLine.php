@@ -90,7 +90,7 @@ class CommandLine
     }
 
     /**
-     * @return void
+     * @return string
      */
     protected function getUsage()
     {
@@ -106,7 +106,7 @@ Usage: phpdistill [options] <classname> <interfacename>
   --excludeMagicMethods                 Will exclude all magic methods.
   --excludeOldStyleConstructors         Will exclude Legacy Constructors.
   --filterMethodsByPattern <pattern>    Only include methods matching PCRE pattern.
-  --saveAs                              Filename to save new Interface to.
+  --saveAs                              Filename to save new Interface to. STDOUT if omitted.
 TXT;
     }
 }
