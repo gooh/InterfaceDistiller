@@ -26,7 +26,7 @@ class Writer
     }
 
     /**
-     * @param Accessors $interface
+     * @param \com\github\gooh\InterfaceDistiller\Accessors $interface
      * @return void
      */
     public function writeToFile(Accessors $interface)

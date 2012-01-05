@@ -3,7 +3,7 @@ namespace com\github\gooh\InterfaceDistiller\Controller;
 class CommandLine
 {
     /**
-     * @var InterfaceDistiller
+     * @var \com\github\gooh\InterfaceDistiller\InterfaceDistiller
      */
     protected $interfaceDistiller;
 

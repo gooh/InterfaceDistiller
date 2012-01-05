@@ -28,7 +28,7 @@ class Distillate implements Distillate\Accessors, Distillate\Mutators
     }
 
     /**
-     * @see Distillate\Mutators::setInterfaceName()
+     * @see \com\github\gooh\InterfaceDistiller\Distillate\Mutators::setInterfaceName()
      */
     public function setInterfaceName($interfaceName)
     {
@@ -36,7 +36,7 @@ class Distillate implements Distillate\Accessors, Distillate\Mutators
     }
 
     /**
-     * @see Distillate\Mutators::setExtendingInterfaces()
+     * @see \com\github\gooh\InterfaceDistiller\Distillate\Mutators::setExtendingInterfaces()
      */
     public function setExtendingInterfaces($commaSeparatedInterfaceNames)
     {
@@ -44,7 +44,7 @@ class Distillate implements Distillate\Accessors, Distillate\Mutators
     }
 
     /**
-     * @see Distillate\Mutators::addMethod()
+     * @see \com\github\gooh\InterfaceDistiller\Distillate\Mutators::addMethod()
      */
     public function addMethod(\ReflectionMethod $reflectionMethod)
     {
@@ -52,7 +52,7 @@ class Distillate implements Distillate\Accessors, Distillate\Mutators
     }
 
     /**
-     * @see Distillate\Accessors::getInterfaceName()
+     * @see \com\github\gooh\InterfaceDistiller\Distillate\Accessors::getInterfaceName()
      */
     public function getInterfaceName()
     {
@@ -60,7 +60,7 @@ class Distillate implements Distillate\Accessors, Distillate\Mutators
     }
 
     /**
-     * @see Distillate\Accessors::getInterfaceMethods()
+     * @see \com\github\gooh\InterfaceDistiller\Distillate\Accessors::getInterfaceMethods()
      */
     public function getInterfaceMethods()
     {
@@ -68,7 +68,7 @@ class Distillate implements Distillate\Accessors, Distillate\Mutators
     }
 
     /**
-     * @see Distillate\Accessors::getExtendingInterfaces()
+     * @see \com\github\gooh\InterfaceDistiller\Distillate\Accessors::getExtendingInterfaces()
      */
     public function getExtendingInterfaces()
     {
