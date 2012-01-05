@@ -26,6 +26,11 @@ $distiller
     ->distill('SomeFoo', 'MyInterface');
 ```        
 
+With the notable exception of the `distill` and `reset` method, all other public methods 
+provide a Fluent Interface. Calling `distill` will create a new interface from the specified 
+class and given configuration. The source class is not altered in any way (it's not extraction). 
+Subsequent calls to `distill` will use the same configuration unless `reset` was called.
+
 ### Example 2 - Using the Commandline Interface
 
 ```
@@ -43,4 +48,10 @@ $distiller
       --saveAs                              Filename to save new Interface to.
 ```
 
-A programmatic example can be found in the examples folder.
+The Commandline Interface will always reset configuration between calls. This means you need 
+to specify the full configuration for each class you want to distill interfaces from.
+
+### Example 3 - Using the progammatic approach
+
+A programmatic example can be found in the examples folder. In general, you will only need 
+this approach if you need to add, modify or swap out internal components.
