@@ -44,16 +44,16 @@ class InterfaceDistillerTest extends \PHPUnit_Framework_TestCase
      */
     public function testDistillUsingAllExcludeOptions()
     {
-        $this->interfaceDistillate
+        $this->interfaceDistiller
             ->excludeImplementedMethods()
             ->excludeInheritedMethods()
             ->excludeMagicMethods()
             ->excludeOldStyleConstructors()
             ->distill(
-                '\\com\\github\\gooh\\InterfaceDistiller\\DistillTestClass', 
+                '\\com\\github\\gooh\\InterfaceDistiller\\DistillTestClass',
                 'DistillWithAllExcludeOptionsSetInterface'
         );
-        $this->assertDistillateEqualsExpectedFile('distillWithAllExcludeOptionsSetInterface.php');
+        $this->assertWrittenInterfaceEqualsExpectedFile('distillWithAllExcludeOptionsSetInterface.php');
     }
 
     /**
@@ -61,26 +61,38 @@ class InterfaceDistillerTest extends \PHPUnit_Framework_TestCase
      */
     public function testDistillUsingFilter()
     {
-        $this->interfaceDistillate
+        $this->interfaceDistiller
             ->filterMethodsByPattern('(^public.+WithParameters$)')
             ->distill(
                 '\\com\\github\\gooh\\InterfaceDistiller\\DistillTestClass',
                 'DistillWithFilterInterface'
         );
-        $this->assertDistillateEqualsExpectedFile('distillWithFilterInterface.php');
+        $this->assertWrittenInterfaceEqualsExpectedFile('distillWithFilterInterface.php');
     }
 
-    private function assertDistillateEqualsExpectedFile($expectedFile)
+    /**
+     * @param string $expectedFileName
+     * @return void
+     */
+    private function assertWrittenInterfaceEqualsExpectedFile($expectedFileName)
     {
-        $this->fileObject->fseek(0);
-        ob_start();
-        $this->fileObject->fpassthru();
-        $actual = ob_get_contents();
-        ob_end_clean();
-        $this->assertSame(
-            trim(file_get_contents(__DIR__ . '/_files/' . $expectedFile)),            
-            $actual
+        $expectedContent = $this->replaceNewLinesToSystemSpecificNewLines(
+            trim(file_get_contents(__DIR__ . '/_files/' . $expectedFileName))
         );
+        $actualContent = $this->replaceNewLinesToSystemSpecificNewLines(
+            trim(implode('', iterator_to_array($this->fileObject)))
+        );
+        $this->assertSame($expectedContent, $actualContent);
+    }
+
+    /**
+     * @param string $string
+     * @return string
+     */
+    private function replaceNewLinesToSystemSpecificNewLines($string)
+    {
+        return preg_replace('~(*BSR_ANYCRLF)\R~', PHP_EOL, $string);
+
     }
 }
 
