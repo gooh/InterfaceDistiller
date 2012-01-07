@@ -2,11 +2,7 @@
 
 InterfaceDistiller allows you to derive Interfaces from the API of a class.
 
-## Installation
-
-InterfaceDistiller is available as a convenient phar package:
-
-- [Right Click and Save As to download InterfaceDistiller](https://github.com/downloads/gooh/InterfaceDistiller/interfaceDistiller.phar)
+- [Right Click and Save As to download InterfaceDistiller Phar](https://github.com/downloads/gooh/InterfaceDistiller/interfaceDistiller.phar)
 
 ## Basic Usage Example
 
