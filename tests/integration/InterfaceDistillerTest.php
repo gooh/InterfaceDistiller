@@ -7,9 +7,19 @@ require __DIR__ . '/_files/DistillTestClass.php';
  */
 class InterfaceDistillerTest extends \PHPUnit_Framework_TestCase
 {
-    private $interfaceDistillate;
+    /**
+     * @var \com\github\gooh\InterfaceDistiller\InterfaceDistiller
+     */
+    private $interfaceDistiller;
+
+    /**
+     * @var \SplTempFileObject
+     */
     private $fileObject;
 
+    /**
+     * @return void
+     */
     public function setUp()
     {
         $this->interfaceDistillate = new InterfaceDistiller();
@@ -17,6 +27,9 @@ class InterfaceDistillerTest extends \PHPUnit_Framework_TestCase
         $this->interfaceDistillate->saveAs($this->fileObject);
     }
 
+    /**
+     * @return void
+     */
     public function testDistillWithNoOptionsSet()
     {
         $this->interfaceDistillate->distill(
@@ -26,6 +39,9 @@ class InterfaceDistillerTest extends \PHPUnit_Framework_TestCase
         $this->assertDistillateEqualsExpectedFile('distillWithNoOptionsSetInterface.php');
     }
 
+    /**
+     * @return void
+     */
     public function testDistillUsingAllExcludeOptions()
     {
         $this->interfaceDistillate
@@ -40,6 +56,9 @@ class InterfaceDistillerTest extends \PHPUnit_Framework_TestCase
         $this->assertDistillateEqualsExpectedFile('distillWithAllExcludeOptionsSetInterface.php');
     }
 
+    /**
+     * @return void
+     */
     public function testDistillUsingFilter()
     {
         $this->interfaceDistillate
