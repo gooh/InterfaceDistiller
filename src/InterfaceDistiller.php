@@ -78,24 +78,6 @@ class InterfaceDistiller
     }
 
     /**
-     * @param  string $className
-     * @return void
-     */
-    protected function distillFromClass($className)
-    {
-        $this->reflectionClass = $className;
-    }
-
-    /**
-     * @param  string $interfaceName
-     * @return void
-     */
-    protected function distillIntoInterface($interfaceName)
-    {
-        $this->distillate->setInterfaceName($interfaceName);
-    }
-
-    /**
      * @param  integer $reflectionMethodModifiersMask
      * @return \com\github\gooh\InterfaceDistiller\InterfaceDistiller
      */
@@ -187,8 +169,8 @@ class InterfaceDistiller
      */
     public function distill($fromClassName, $intoInterfaceName)
     {
-        $this->distillFromClass($fromClassName);
-        $this->distillIntoInterface($intoInterfaceName);
+        $this->reflectionClass = $fromClassName;
+        $this->distillate->setInterfaceName($intoInterfaceName);
         $this->prepareDistillate();
         $this->writeDistillate();
     }
