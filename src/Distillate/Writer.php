@@ -88,6 +88,7 @@ class Writer
     protected function writeDocCommentOfMethod(\ReflectionMethod $method)
     {
         if ($method->getDocComment()) {
+            $this->writeString('    ');
             $this->writeString($method->getDocComment());
             $this->writeString(PHP_EOL);
         }
