@@ -22,9 +22,9 @@ class InterfaceDistillerTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->interfaceDistillate = new InterfaceDistiller();
-        $this->fileObject = new \SplTempFileObject();
-        $this->interfaceDistillate->saveAs($this->fileObject);
+        $this->interfaceDistiller = new InterfaceDistiller;
+        $this->fileObject = new \SplTempFileObject(-1);
+        $this->interfaceDistiller->saveAs($this->fileObject);
     }
 
     /**
@@ -32,11 +32,11 @@ class InterfaceDistillerTest extends \PHPUnit_Framework_TestCase
      */
     public function testDistillWithNoOptionsSet()
     {
-        $this->interfaceDistillate->distill(
-            '\\com\\github\\gooh\\InterfaceDistiller\\DistillTestClass', 
+        $this->interfaceDistiller->distill(
+            '\\com\\github\\gooh\\InterfaceDistiller\\DistillTestClass',
             'DistillWithNoOptionsSetInterface'
         );
-        $this->assertDistillateEqualsExpectedFile('distillWithNoOptionsSetInterface.php');
+        $this->assertWrittenInterfaceEqualsExpectedFile('distillWithNoOptionsSetInterface.php');
     }
 
     /**
