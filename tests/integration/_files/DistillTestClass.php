@@ -4,6 +4,9 @@ namespace com\github\gooh\InterfaceDistiller;
 class DistillTestClass extends DistillTestClassBaseClass
 {
 
+    /**
+     * @return void
+     */
     public function __construct() {}
     public function publicFunction() {}
     public function publicFunctionWithParameters($a, $b, \stdClass $c, &$d, $e=array(1, 2, 3)) {}
