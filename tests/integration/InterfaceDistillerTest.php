@@ -71,6 +71,38 @@ class InterfaceDistillerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @return void
+     */
+    public function testDistillUsingExtendingInterfacesOption()
+    {
+        $this->interfaceDistiller
+            ->extendInterfaceFrom('Foo, Bar')
+            ->distill(
+                '\\com\\github\\gooh\\InterfaceDistiller\\DistillTestClass',
+                'DistillWithExtendingInterfacesOptionSetInterface'
+        );
+        $this->assertWrittenInterfaceEqualsExpectedFile(
+        	'distillWithExtendingInterfacesOptionsSetInterface.php'
+        );
+    }
+
+    /**
+     * @requires PHP 5.4
+     */
+    public function testDistillUsingExcludeTraitMethodOption()
+    {
+        $this->interfaceDistiller
+            ->extendInterfaceFrom('Foo, Bar')
+            ->distill(
+                '\\com\\github\\gooh\\InterfaceDistiller\\DistillTestClassWithTrait',
+                'DistillWithTraitsExcludedOptionSetInterface'
+        );
+        $this->assertWrittenInterfaceEqualsExpectedFile(
+        	'distillWithTraitsExcludedOptionSetInterface.php'
+        );
+    }
+
+    /**
      * @param string $expectedFileName
      * @return void
      */
