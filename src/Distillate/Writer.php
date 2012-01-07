@@ -17,28 +17,28 @@ class Writer
     }
 
     /**
+     * @param \com\github\gooh\InterfaceDistiller\Accessors $distillate
+     * @return void
+     */
+    public function writeToFile(Accessors $distillate)
+    {
+        $this->writeString('<?php' . PHP_EOL);
+        $this->writeInterfaceSignature(
+            $distillate->getInterfaceName(),
+            $distillate->getExtendingInterfaces()
+        );
+        $this->writeString('{' . PHP_EOL);
+        $this->writeMethods($distillate->getInterfaceMethods());
+        $this->writeString('}');
+    }
+
+    /**
      * @param string $string
      * @return void
      */
     protected function writeString($string)
     {
         $this->fileObject->fwrite($string);
-    }
-
-    /**
-     * @param \com\github\gooh\InterfaceDistiller\Accessors $interface
-     * @return void
-     */
-    public function writeToFile(Accessors $interface)
-    {
-        $this->writeString('<?php' . PHP_EOL);
-        $this->writeInterfaceSignature(
-            $interface->getInterfaceName(),
-            $interface->getExtendingInterfaces()
-        );
-        $this->writeString('{' . PHP_EOL);
-        $this->writeMethods($interface->getInterfaceMethods());
-        $this->writeString('}');
     }
 
     /**
