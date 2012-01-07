@@ -92,7 +92,5 @@ class InterfaceDistillerTest extends \PHPUnit_Framework_TestCase
     private function replaceNewLinesToSystemSpecificNewLines($string)
     {
         return preg_replace('~(*BSR_ANYCRLF)\R~', PHP_EOL, $string);
-
     }
 }
-
