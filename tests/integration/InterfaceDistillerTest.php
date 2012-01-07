@@ -103,6 +103,20 @@ class InterfaceDistillerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @return void
+     */
+    public function testDistillUsingMethodModifiersOption()
+    {
+        $this->interfaceDistiller
+            ->methodsWithModifiers(\ReflectionMethod::IS_STATIC)
+            ->distill(
+                '\\com\\github\\gooh\\InterfaceDistiller\\DistillTestClass',
+                'DistillWithStaticMethodsOnly'
+        );
+        $this->assertWrittenInterfaceEqualsExpectedFile('distillWithStaticMethodsOnly.php');
+    }
+
+    /**
      * @param string $expectedFileName
      * @return void
      */

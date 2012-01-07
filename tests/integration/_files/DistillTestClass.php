@@ -3,7 +3,6 @@ namespace com\github\gooh\InterfaceDistiller;
 
 class DistillTestClass extends DistillTestClassBaseClass
 {
-
     /**
      * @return void
      */
