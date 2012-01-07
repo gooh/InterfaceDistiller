@@ -139,7 +139,7 @@ class Writer
                 ? '\\' . $typeHint->getName()
                 : $typeHint->getName();
         }
-        return $reflectionParameter->getClass();
+        return $reflectionParameter->getClass()->getName();
     }
 
     /**

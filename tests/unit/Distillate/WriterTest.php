@@ -1,7 +1,7 @@
 <?php
 namespace com\github\gooh\InterfaceDistiller\Distillate;
 require __DIR__ . '/_files/TestClass.php';
-
+require __DIR__ . '/_files/TestClassWithoutNamespace.php';
 /**
  * @covers \com\github\gooh\InterfaceDistiller\Distillate\Writer::<!public>
  * @covers \com\github\gooh\InterfaceDistiller\Distillate\Writer::__construct
@@ -137,6 +137,17 @@ class WriterTest extends \PHPUnit_Framework_TestCase
         $method = array(new \ReflectionMethod('\SplFileObject', 'fgetcsv'));
         $accessors = $this->stubInterfaceAccessors('', '', $method);
         $this->writer->writeToFile($accessors);
+    }
+
+    /**
+     * @covers \com\github\gooh\InterfaceDistiller\Distillate\Writer::resolveTypeHint
+     */
+    public function testTypeHintOnMethodsInNonNamespacedClassesDoNotContainBackslash()
+    {
+        $method = array(new \ReflectionMethod('TestClassWithoutNamespace', 'fn'));
+        $accessors = $this->stubInterfaceAccessors('', '', $method);
+        $this->writer->writeToFile($accessors);
+        $this->assertSameContentAtLine('public function fn(stdClass $obj);', 3);
     }
 
     /**
