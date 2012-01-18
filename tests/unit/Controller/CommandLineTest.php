@@ -125,4 +125,25 @@ class CommandLineTest extends \PHPUnit_Framework_TestCase
             trim(implode('', iterator_to_array($outStream)))
         );
     }
+
+    /**
+     * @covers \com\github\gooh\InterfaceDistiller\Controller\CommandLine::handleInput
+     */
+    public function testBootstrapOptionIncludesSpecifiedFile()
+    {
+        $outStream = new \SplTempFileObject(-1);
+
+        call_user_func(
+            $this->commandLineController,
+            array(
+            	'scriptname',
+            	'--bootstrap', __DIR__ . '/_files/bootstrap.php',
+            	'SomeClass',
+            	'SomeInterface'
+            ),
+            $outStream
+        );
+
+        $this->assertTrue(class_exists('Bootstrap'));
+    }
 }
