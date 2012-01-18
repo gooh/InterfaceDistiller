@@ -12,13 +12,11 @@ class NoOldStyleConstructorIteratorTest extends FilterIteratorTestCase
         $this->setTestClassName('\\TestClass');
 
         $this->assertFilterIteratorContains(
-            $this->addTraitMethodWhenSupported(
-                array(
-                    $this->getTestClassMethod('foo'),
-                    $this->gettestClassMethod('__construct'),
-                    $this->getTestClassMethod('implementedMethod'),
-                    $this->getTestClassMethod('inheritedMethod')
-                )
+            array(
+                $this->getTestClassMethod('foo'),
+                $this->gettestClassMethod('__construct'),
+                $this->getTestClassMethod('implementedMethod'),
+                $this->getTestClassMethod('inheritedMethod')
             )
         );
     }

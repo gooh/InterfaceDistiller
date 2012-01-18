@@ -8,6 +8,6 @@ class NoTraitMethodsIterator extends \FilterIterator
      */
     public function accept()
     {
-        return !$this->current()->getDeclaringClass()->isTrait();
+        return $this->current()->getDeclaringClass()->isTrait();
     }
 }
