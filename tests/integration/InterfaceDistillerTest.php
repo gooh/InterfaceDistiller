@@ -91,6 +91,7 @@ class InterfaceDistillerTest extends \PHPUnit_Framework_TestCase
      */
     public function testDistillUsingExcludeTraitMethodOption()
     {
+        require __DIR__ . '/_files/DistillTestClassWithTrait.php';
         $this->interfaceDistiller
             ->extendInterfaceFrom('Foo, Bar')
             ->distill(
