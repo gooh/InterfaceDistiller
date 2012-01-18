@@ -20,6 +20,6 @@ interface SomeInterface
     public function implementedMethod();
 }
 
-trait {
+trait SomeTrait {
     public function traitMethod() {}
 }
