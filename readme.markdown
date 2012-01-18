@@ -36,9 +36,11 @@ Subsequent calls to `distill` will use the same configuration unless `reset` was
 ### Example 2 - Using the Commandline Interface
 
 ```
-    Interface Distiller 1.0.0
+    Interface Distiller 1.0.2
 
     Usage: phpdistill [options] <classname> <interfacename>
+
+      --bootstrap                           Path to File containing your bootstrap and autoloader
 
       --methodsWithModifiers <number>       A ReflectionMethod Visibility BitMask. Defaults to Public.
       --extendInterfaceFrom  <name,...>     Comma-separated list of Interfaces to extend.
@@ -48,7 +50,6 @@ Subsequent calls to `distill` will use the same configuration unless `reset` was
       --excludeOldStyleConstructors         Will exclude Legacy Constructors.
       --filterMethodsByPattern <pattern>    Only include methods matching PCRE pattern.
       --saveAs                              Filename to save new Interface to. STDOUT if omitted.
-      --bootstrap                           Path to File containing your bootstrap and autoloader
 ```
 
 The CommandLine Interface requires you to set the pathname to your bootstrap file in the

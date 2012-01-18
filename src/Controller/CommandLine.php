@@ -99,9 +99,11 @@ class CommandLine
     protected function getUsage()
     {
         return <<< TXT
-Interface Distiller 1.0.1
+Interface Distiller 1.0.2
 
 Usage: phpdistill [options] <classname> <interfacename>
+
+  --bootstrap                           Path to File containing your bootstrap and autoloader
 
   --methodsWithModifiers <number>       A ReflectionMethod Visibility BitMask. Defaults to Public.
   --extendInterfaceFrom  <name,...>     Comma-separated list of Interfaces to extend.
@@ -111,7 +113,6 @@ Usage: phpdistill [options] <classname> <interfacename>
   --excludeOldStyleConstructors         Will exclude Legacy Constructors.
   --filterMethodsByPattern <pattern>    Only include methods matching PCRE pattern.
   --saveAs                              Filename to save new Interface to. STDOUT if omitted.
-  --bootstrap                           Path to File containing your bootstrap and autoloader
 TXT;
     }
 }
