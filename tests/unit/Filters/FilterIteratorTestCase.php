@@ -47,9 +47,10 @@ abstract class FilterIteratorTestCase extends \PHPUnit_Framework_TestCase
      */
     public function addTraitMethodWhenSupported(array $methods)
     {
-        return version_compare(phpversion(), '5.4', '>=')
-            ? $methods[] = $this->getTestClassMethod('traitMethod')
-            : $methods;
+        if (version_compare(phpversion(), '5.4', '>=')) {
+            $methods[] = $this->getTestClassMethod('traitMethod');
+        }
+        return $methods;
     }
 
     /**
