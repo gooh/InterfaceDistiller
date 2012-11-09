@@ -159,6 +159,13 @@ class Writer
                 var_export($parameter->getDefaultValue(), true)
             );
         }
+        if ($parameter->getDeclaringClass()->isInternal()) {
+            // Last try to get some valuable data for default-value of internal classes ...
+            if ($parameter->allowsNull())
+                return ' = NULL ';
+            else
+                return ' /* internal default */ ';
+        }
         throw new \RuntimeException(
             sprintf(
             	'Optional Parameter %s has no default value',
