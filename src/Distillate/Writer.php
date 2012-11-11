@@ -143,34 +143,30 @@ class Writer
     }
 
     /**
-     * @throws \RuntimeException When $parameter is optional without a default value
      * @param \ReflectionParameter $parameter
      * @return string
      */
     protected function resolveDefaultValue(\ReflectionParameter $parameter)
     {
-        if (!$parameter->isOptional()) {
+        if (false === $parameter->isOptional()) {
             return;
         }
         if ($parameter->isDefaultValueAvailable()) {
-            return ' = ' . preg_replace(
-            	'(\s)',
-            	'',
-                var_export($parameter->getDefaultValue(), true)
-            );
+            $defaultValue = var_export($parameter->getDefaultValue(), true);
+            return ' = ' . preg_replace('(\s)', '', $defaultValue);
         }
-        if ($parameter->getDeclaringClass()->isInternal()) {
-            // Last try to get some valuable data for default-value of internal classes ...
-            if ($parameter->allowsNull())
-                return ' = NULL ';
-            else
-                return ' /* internal default */ ';
+        return $this->handleOptionalParameterWithUnresolvableDefaultValue($parameter);
+    }
+
+    /**
+     * @param \ReflectionParameter $parameter
+     * @return string
+     */
+    protected function handleOptionalParameterWithUnresolvableDefaultValue(\ReflectionParameter $parameter)
+    {
+        if ($parameter->allowsNull()) {
+            return ' = NULL ';
         }
-        throw new \RuntimeException(
-            sprintf(
-            	'Optional Parameter %s has no default value',
-                $parameter->getName()
-            )
-        );
+        return ' /* = unresolvable */ ';
     }
 }

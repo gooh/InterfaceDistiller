@@ -129,14 +129,18 @@ class WriterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException RuntimeException
-     * @return void
+     * @covers \com\github\gooh\InterfaceDistiller\Distillate\Writer::handleOptionalParameterWithUnresolvableDefaultValue
      */
-    public function testCannotWriteOptionalParametersWithNoDefaultValue()
+    public function testUnresolvableOptionalParametersAreChangedToRequiredParameters()
     {
         $method = array(new \ReflectionMethod('\SplFileObject', 'fgetcsv'));
         $accessors = $this->stubInterfaceAccessors('', '', $method);
         $this->writer->writeToFile($accessors);
+        $this->assertSameContentAtLine(
+            'public function fgetcsv($delimiter /* = unresolvable */, ' .
+            '$enclosure /* = unresolvable */);',
+            3
+        );
     }
 
     /**
