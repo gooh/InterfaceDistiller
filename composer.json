@@ -1,5 +1,5 @@
 {
-    "name": "gooh/InterfaceDistiller",
+    "name": "gooh/interface-distiller",
     "description": "Derives Interfaces from the API of a class", 
     "type": "library", 
     "version": "1.0.3",
