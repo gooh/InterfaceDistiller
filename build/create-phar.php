@@ -8,6 +8,7 @@ if(file_exists($phar)) {
 $phar = new Phar($phar, 0 , 'interfaceDistiller.phar');
 $phar->buildFromDirectory(__DIR__ . '/../src/');
 $phar->setStub(<<<'STUB'
+#!/usr/bin/env php
 <?php
 Phar::mapPhar('interfaceDistiller.phar');
 require 'phar://interfaceDistiller.phar/autoload.php';
