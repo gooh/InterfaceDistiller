@@ -3,6 +3,7 @@
     "description": "Derives Interfaces from the API of a class", 
     "type": "library", 
     "version": "1.0.3",
+    "bin": ["bin/rough"],
     "keywords": ["reflection","generator","interface"], 
     "license": "MIT",
     "authors": [{
