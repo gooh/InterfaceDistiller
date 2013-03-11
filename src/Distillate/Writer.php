@@ -46,7 +46,12 @@ class Writer
      */
     protected function writeInterfaceSignature($interfaceName, $extendingInterfaces = false)
     {
-        $this->writeString("interface $interfaceName");
+        $nameParts = explode('\\',$interfaceName);
+        $interfaceShortName = array_pop($nameParts);
+        if($nameParts){
+            $this->writeString('namespace ' . implode('\\',$nameParts) . ';' .PHP_EOL);
+        }
+        $this->writeString("interface $interfaceShortName");
         if ($extendingInterfaces) {
             $this->writeString(" extends $extendingInterfaces");
         }
