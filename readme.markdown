@@ -52,8 +52,9 @@ Subsequent calls to `distill` will use the same configuration unless `reset` was
 
 The CommandLine Interface requires you to set the pathname to your bootstrap file in the
 `--bootstrap` option. Your bootstrap file should contain all the necessary logic to include 
-any classes you might derive interfaces from. Without that option, you will only be able to 
-distill from native classes.
+any classes you might derive interfaces from. If you installed InterfaceDistiller with composer the commandline tool
+will try to iclude the autoloader in the vendor directory, else you will only be able to 
+distill from native classes, Without that option.
 
 The Commandline Interface will always reset configuration between calls. This means you need 
 to specify the full configuration for each class you want to distill interfaces from.
