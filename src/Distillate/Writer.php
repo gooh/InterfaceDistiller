@@ -77,7 +77,7 @@ class Writer
     {
         $this->writeString(
             sprintf(
-            	'%s    public%sfunction %s(%s);',
+            	'%s    %sfunction %s(%s);',
                 $this->writeDocCommentOfMethod($method),
                 $method->isStatic() ? ' static ' : ' ',
                 $method->name,
@@ -123,7 +123,7 @@ class Writer
         return trim(
             sprintf(
             	'%s%s %s$%s%s',
-                $parameter->getClass() ? $this->resolveTypeHint($parameter) : '',
+                $parameter->getClass() ? '\\'.$this->resolveTypeHint($parameter) : '',
                 $parameter->isArray() ? 'array' : '',
                 $parameter->isPassedByReference() ? '&' : '',
                 $parameter->name,
