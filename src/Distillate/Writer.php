@@ -8,6 +8,11 @@ class Writer
     protected $fileObject;
 
     /**
+     * @var bool
+     */
+    protected $inGlobalNamespace;
+     
+    /**
      * @param \SplFileObject $fileObject
      * @return void
      */
@@ -46,7 +51,15 @@ class Writer
      */
     protected function writeInterfaceSignature($interfaceName, $extendingInterfaces = false)
     {
-        $this->writeString("interface $interfaceName");
+        $nameParts = explode('\\',$interfaceName);
+        $interfaceShortName = array_pop($nameParts);
+        if($nameParts){
+            $this->writeString('namespace ' . implode('\\',$nameParts) . ';' .PHP_EOL);
+            $this->inGlobalNamespace = false;
+        } else {
+            $this->inGlobalNamespace = true;
+        }
+        $this->writeString("interface $interfaceShortName");
         if ($extendingInterfaces) {
             $this->writeString(" extends $extendingInterfaces");
         }
@@ -115,10 +128,11 @@ class Writer
      */
     protected function parameterToString(\ReflectionParameter $parameter)
     {
+        $classPrefix = $this->inGlobalNamespace ? '': '\\';
         return trim(
             sprintf(
             	'%s%s %s$%s%s',
-                $parameter->getClass() ? $this->resolveTypeHint($parameter) : '',
+                $parameter->getClass() ? $classPrefix.$this->resolveTypeHint($parameter) : '',
                 $parameter->isArray() ? 'array' : '',
                 $parameter->isPassedByReference() ? '&' : '',
                 $parameter->name,
