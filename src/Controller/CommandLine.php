@@ -64,7 +64,7 @@ class CommandLine
                 	break;
                 case 'saveAs':
                     $this->interfaceDistiller->$arg(
-                        new \SplFileObject(array_shift($cliArguments))
+                        new \SplFileObject(array_shift($cliArguments), 'w')
                     );
                     break;
                 case 'excludeImplementedMethods':
