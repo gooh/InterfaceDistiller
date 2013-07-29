@@ -2,8 +2,6 @@
 
 InterfaceDistiller allows you to derive Interfaces from the API of a class.
 
-[Right Click and Save As to download InterfaceDistiller Phar](https://github.com/downloads/gooh/InterfaceDistiller/phpdistill.phar)
-
 ## Basic Usage Example
 
 Interface Distiller can either be used a) programmatically, b) via a Builder or c) via the 
