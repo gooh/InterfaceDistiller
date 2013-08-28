@@ -33,6 +33,8 @@ Subsequent calls to `distill` will use the same configuration unless `reset` was
 
 ### Example 2 - Using the Commandline Interface
 
+To use the Commandline Interface, you have to run `build/create_phar.php` to build a phar file previously.
+
 ```
     Usage: phpdistill [options] <classname> <interfacename>
 
