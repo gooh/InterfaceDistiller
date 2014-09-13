@@ -1,5 +1,7 @@
 <?php
+
 namespace com\github\gooh\InterfaceDistiller;
+
 include __DIR__ . '/../src/autoload.php';
 $distiller = new InterfaceDistiller;
 $distiller
@@ -10,5 +12,5 @@ $distiller
     ->excludeMagicMethods()
     ->excludeOldStyleConstructors()
     ->filterMethodsByPattern('(^get)')
-    ->saveAs('php://output')
+    ->saveAs(new \SplFileObject('php://output'))
     ->distill('SomeFoo', 'MyInterface');
