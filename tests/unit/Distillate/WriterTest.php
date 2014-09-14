@@ -138,7 +138,7 @@ class WriterTest extends \PHPUnit_Framework_TestCase
         $this->writer->writeToFile($accessors);
         $this->assertSameContentAtLine(
             'public function fgetcsv($delimiter /* = unresolvable */, ' .
-            '$enclosure /* = unresolvable */);',
+            '$enclosure /* = unresolvable */, $escape /* = unresolvable */);',
             3
         );
     }
