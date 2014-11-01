@@ -64,7 +64,7 @@ class CommandLine
                 case 'methodsWithModifiers':
                 case 'extendInterfaceFrom':
                     $this->interfaceDistiller->$arg(array_shift($cliArguments));
-                	break;
+                    break;
                 case 'saveAs':
                     $this->interfaceDistiller->$arg(
                         new \SplFileObject(array_shift($cliArguments), 'w')
@@ -75,7 +75,7 @@ class CommandLine
                 case 'excludeMagicMethods':
                 case 'excludeOldStyleConstructors':
                     $this->interfaceDistiller->$arg();
-                	break;
+                    break;
                 case 'bootstrap':
                     $bootstrap = array_shift($cliArguments);
                     require $bootstrap;
