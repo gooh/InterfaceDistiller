@@ -72,7 +72,7 @@ class InterfaceDistiller
         $this->excludeOldStyleConstructors = false;
         $this->excludeTraitMethods = false;
         $this->methodModifiers = \ReflectionMethod::IS_PUBLIC;
-        $this->pcrePattern = false;
+        $this->pcrePattern = '';
         $this->reflectionClass = null;
         $this->saveAs = null;
     }
