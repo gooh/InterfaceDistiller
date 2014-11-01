@@ -191,7 +191,7 @@ class InterfaceDistiller
         }
     }
 
-	/**
+    /**
      * @param \ArrayIterator $iterator
      * @param \ReflectionClass $reflector
      * @return \Iterator
