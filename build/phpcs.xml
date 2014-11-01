@@ -46,12 +46,6 @@
     <rule ref="MySource.PHP.EvalObjectFactory"/>
     <rule ref="PEAR.Classes.ClassDeclaration"/>
     <rule ref="PEAR.Functions.ValidDefaultValue"/>
-    <rule ref="PHPUnitStandard.Testing.AllowedFunctionOverride"/>
-    <rule ref="PHPUnitStandard.Testing.FileNameSuffix"/>
-    <rule ref="PHPUnitStandard.Testing.NoOutputFunctions"/>
-    <rule ref="PHPUnitStandard.Testing.NoOutputStatements"/>
-    <rule ref="PHPUnitStandard.Testing.TestOrProviderIsPublic"/>
-    <rule ref="PHPUnitStandard.Testing.UnusedProvider"/>
     <rule ref="PSR1.Classes.ClassDeclaration"/>
     <rule ref="PSR1.Files.SideEffects"/>
     <rule ref="PSR2.Classes.ClassDeclaration"/>
