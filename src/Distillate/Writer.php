@@ -190,10 +190,6 @@ class Writer
      */
     protected function handleOptionalParameterWithUnresolvableDefaultValue(\ReflectionParameter $parameter)
     {
-        if ($parameter->allowsNull()) {
-            return ' = NULL ';
-        }
-
-        return ' /* = unresolvable */ ';
+        return $parameter->allowsNull() ? ' = NULL ' : ' /* = unresolvable */ ';
     }
 }
