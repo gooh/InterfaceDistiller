@@ -23,6 +23,6 @@ class RegexMethodIterator extends \FilterIterator
      */
     public function accept()
     {
-        return preg_match($this->pcrePattern, $this->current()->name);
+        return (bool) preg_match($this->pcrePattern, $this->current()->name);
     }
 }
