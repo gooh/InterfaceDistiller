@@ -3,6 +3,7 @@ filter:
         - 'tests/*'
         - 'bin/*'
         - 'build/*'
+        - 'examples/*'
     paths: {  }
 tools:
     php_sim: true
