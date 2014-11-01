@@ -3,7 +3,7 @@ namespace com\github\gooh\InterfaceDistiller\Filters;
 class NoInheritedMethodsIterator extends \FilterIterator
 {
     /**
-     * @var string
+     * @var \ReflectionClass
      */
     protected $reflectedClass;
 
