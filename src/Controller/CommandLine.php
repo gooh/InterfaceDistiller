@@ -98,7 +98,7 @@ class CommandLine
     protected function getUsage()
     {
         return <<< TXT
-Interface Distiller 1.0.3
+Interface Distiller 1.0.4
 
 Usage: phpdistill [options] <classname> <interfacename>
 
