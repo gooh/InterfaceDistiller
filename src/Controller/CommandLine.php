@@ -8,8 +8,7 @@ class CommandLine
     protected $interfaceDistiller;
 
     /**
-     * @param \com\github\gooh\InterfaceDistiller\InterfaceDistiller $distiller
-     * @return void
+     * @param \com\github\gooh\InterfaceDistiller\InterfaceDistiller $interfaceDistiller
      */
     public function __construct(\com\github\gooh\InterfaceDistiller\InterfaceDistiller $interfaceDistiller)
     {
@@ -18,7 +17,7 @@ class CommandLine
 
     /**
      * @param array $cliArguments
-     * @param resource $outputStream
+     * @param \SplFileObject $outputStream
      * @return void
      */
     public function __invoke(array $cliArguments, $outputStream)
