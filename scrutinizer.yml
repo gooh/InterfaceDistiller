@@ -14,4 +14,4 @@ tools:
             ruleset: ./build/phpmd.xml
     php_code_sniffer:
         config:
-            ruleset: .build/phpcs.xml
+            ruleset: ./build/phpcs.xml
