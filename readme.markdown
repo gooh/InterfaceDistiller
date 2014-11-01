@@ -2,6 +2,9 @@
 
 InterfaceDistiller allows you to derive Interfaces from the API of a class.
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gooh/InterfaceDistiller/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gooh/InterfaceDistiller/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/gooh/InterfaceDistiller/badges/build.png?b=master)](https://scrutinizer-ci.com/g/gooh/InterfaceDistiller/build-status/master)
+
 ## Basic Usage Example
 
 Interface Distiller can either be used a) programmatically, b) via a Builder or c) via the 
