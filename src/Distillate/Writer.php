@@ -62,7 +62,7 @@ class Writer
         $nameParts = explode('\\', $interfaceName);
         $interfaceShortName = array_pop($nameParts);
         if ($nameParts){
-            $this->writeString('namespace ' . implode('\\',$nameParts) . ';' . PHP_EOL);
+            $this->writeString('namespace ' . implode('\\', $nameParts) . ';' . PHP_EOL);
             $this->inGlobalNamespace = false;
         } else {
             $this->inGlobalNamespace = true;
