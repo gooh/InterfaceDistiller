@@ -1,0 +1,17 @@
+filter:
+    excluded_paths:
+        - 'tests/*'
+        - 'bin/*'
+        - 'build/*'
+    paths: {  }
+tools:
+    php_sim: true
+    php_pdepend: true
+    php_changetracking: true
+    php_analyzer: true
+    php_mess_detector:
+        config:
+            ruleset: ./build/phpmd.xml
+    php_code_sniffer:
+        config:
+            ruleset: .build/phpcs.xml
