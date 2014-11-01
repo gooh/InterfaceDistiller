@@ -1,5 +1,7 @@
 <?php
+
 namespace com\github\gooh\InterfaceDistiller;
+
 class Distillate implements Distillate\Accessors, Distillate\Mutators
 {
     /**

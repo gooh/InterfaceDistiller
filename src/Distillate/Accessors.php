@@ -1,5 +1,7 @@
 <?php
+
 namespace com\github\gooh\InterfaceDistiller\Distillate;
+
 //@codeCoverageIgnoreStart
 interface Accessors
 {

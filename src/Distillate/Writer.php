@@ -1,5 +1,7 @@
 <?php
+
 namespace com\github\gooh\InterfaceDistiller\Distillate;
+
 class Writer
 {
     /**
@@ -60,7 +62,7 @@ class Writer
         $nameParts = explode('\\', $interfaceName);
         $interfaceShortName = array_pop($nameParts);
         if ($nameParts){
-            $this->writeString('namespace ' . implode('\\',$nameParts) . ';' .PHP_EOL);
+            $this->writeString('namespace ' . implode('\\',$nameParts) . ';' . PHP_EOL);
             $this->inGlobalNamespace = false;
         } else {
             $this->inGlobalNamespace = true;
@@ -73,7 +75,7 @@ class Writer
     }
 
     /**
-     * @return void
+     * @param array $methods
      */
     protected function writeMethods(array $methods)
     {
@@ -134,11 +136,12 @@ class Writer
      */
     protected function parameterToString(\ReflectionParameter $parameter)
     {
-        $classPrefix = $this->inGlobalNamespace ? '': '\\';
+        $classPrefix = $this->inGlobalNamespace ? '' : '\\';
+
         return trim(
             sprintf(
             	'%s%s %s$%s%s',
-                $parameter->getClass() ? $classPrefix.$this->resolveTypeHint($parameter) : '',
+                $parameter->getClass() ? $classPrefix . $this->resolveTypeHint($parameter) : '',
                 $parameter->isArray() ? 'array' : '',
                 $parameter->isPassedByReference() ? '&' : '',
                 $parameter->name,
@@ -159,6 +162,7 @@ class Writer
                 ? '\\' . $typeHint->getName()
                 : $typeHint->getName();
         }
+
         return $reflectionParameter->getClass()->getName();
     }
 
@@ -169,12 +173,14 @@ class Writer
     protected function resolveDefaultValue(\ReflectionParameter $parameter)
     {
         if (false === $parameter->isOptional()) {
-            return;
+            return '';
         }
+
         if ($parameter->isDefaultValueAvailable()) {
             $defaultValue = var_export($parameter->getDefaultValue(), true);
             return ' = ' . preg_replace('(\s)', '', $defaultValue);
         }
+
         return $this->handleOptionalParameterWithUnresolvableDefaultValue($parameter);
     }
 
@@ -187,6 +193,7 @@ class Writer
         if ($parameter->allowsNull()) {
             return ' = NULL ';
         }
+
         return ' /* = unresolvable */ ';
     }
 }

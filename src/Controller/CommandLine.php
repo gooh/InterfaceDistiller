@@ -1,16 +1,20 @@
 <?php
+
 namespace com\github\gooh\InterfaceDistiller\Controller;
+
+use com\github\gooh\InterfaceDistiller\InterfaceDistiller;
+
 class CommandLine
 {
     /**
-     * @var \com\github\gooh\InterfaceDistiller\InterfaceDistiller
+     * @var InterfaceDistiller
      */
     protected $interfaceDistiller;
 
     /**
-     * @param \com\github\gooh\InterfaceDistiller\InterfaceDistiller $interfaceDistiller
+     * @param InterfaceDistiller $interfaceDistiller
      */
-    public function __construct(\com\github\gooh\InterfaceDistiller\InterfaceDistiller $interfaceDistiller)
+    public function __construct(InterfaceDistiller $interfaceDistiller)
     {
         $this->interfaceDistiller = $interfaceDistiller;
     }
@@ -80,6 +84,7 @@ class CommandLine
                     $options[] = $arg;
             }
         }
+
         return $options;
     }
 
