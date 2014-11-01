@@ -11,10 +11,9 @@ class Writer
      * @var bool
      */
     protected $inGlobalNamespace;
-     
+
     /**
      * @param \SplFileObject $fileObject
-     * @return void
      */
     public function __construct(\SplFileObject $fileObject)
     {
@@ -22,7 +21,7 @@ class Writer
     }
 
     /**
-     * @param \com\github\gooh\InterfaceDistiller\Accessors $distillate
+     * @param Accessors $distillate
      * @return void
      */
     public function writeToFile(Accessors $distillate)
