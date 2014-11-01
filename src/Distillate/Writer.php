@@ -61,7 +61,7 @@ class Writer
     {
         $nameParts = explode('\\', $interfaceName);
         $interfaceShortName = array_pop($nameParts);
-        if ($nameParts){
+        if ($nameParts) {
             $this->writeString('namespace ' . implode('\\', $nameParts) . ';' . PHP_EOL);
             $this->inGlobalNamespace = false;
         } else {
@@ -94,7 +94,7 @@ class Writer
     {
         $this->writeString(
             sprintf(
-            	static::INDENT . 'public%sfunction %s(%s);',
+                static::INDENT . 'public%sfunction %s(%s);',
                 $method->isStatic() ? ' static ' : ' ',
                 $method->name,
                 $this->methodParametersToString($method)
@@ -122,7 +122,7 @@ class Writer
     protected function methodParametersToString(\ReflectionMethod $method)
     {
         return implode(
-        	', ',
+            ', ',
             array_map(
                 array($this, 'parameterToString'),
                 $method->getParameters()
@@ -140,7 +140,7 @@ class Writer
 
         return trim(
             sprintf(
-            	'%s%s %s$%s%s',
+                '%s%s %s$%s%s',
                 $parameter->getClass() ? $classPrefix . $this->resolveTypeHint($parameter) : '',
                 $parameter->isArray() ? 'array' : '',
                 $parameter->isPassedByReference() ? '&' : '',
