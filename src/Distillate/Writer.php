@@ -51,13 +51,15 @@ class Writer
     }
 
     /**
+     * @param string $interfaceName
+     * @param string $extendingInterfaces
      * @return void
      */
-    protected function writeInterfaceSignature($interfaceName, $extendingInterfaces = false)
+    protected function writeInterfaceSignature($interfaceName, $extendingInterfaces = '')
     {
-        $nameParts = explode('\\',$interfaceName);
+        $nameParts = explode('\\', $interfaceName);
         $interfaceShortName = array_pop($nameParts);
-        if($nameParts){
+        if ($nameParts){
             $this->writeString('namespace ' . implode('\\',$nameParts) . ';' .PHP_EOL);
             $this->inGlobalNamespace = false;
         } else {
