@@ -55,9 +55,11 @@ To use the Commandline Interface, you have to run `build/create_phar.php` to bui
 
 The CommandLine Interface requires you to set the pathname to your bootstrap file in the
 `--bootstrap` option. Your bootstrap file should contain all the necessary logic to include 
-any classes you might derive interfaces from. If you installed InterfaceDistiller with composer the commandline tool
-will try to include the autoloader in the vendor directory, else you will only be able to 
-distill from native classes, Without that option.
+any classes you want derive interfaces from, e.g. autoloaders, include paths, etc. Without that 
+you will only be able to distill from native classes.
+
+If you installed InterfaceDistiller through the Composer package manager, the commandline tool 
+will try to include the autoloader in the vendor directory.
 
 The Commandline Interface will always reset configuration between calls. This means you need 
 to specify the full configuration for each class you want to distill interfaces from.
