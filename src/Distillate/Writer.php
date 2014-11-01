@@ -3,6 +3,11 @@ namespace com\github\gooh\InterfaceDistiller\Distillate;
 class Writer
 {
     /**
+     * Characters used for indentation
+     */
+    const INDENT = '    ';
+
+    /**
      * @var \SplFileObject
      */
     protected $fileObject;
@@ -85,7 +90,7 @@ class Writer
     {
         $this->writeString(
             sprintf(
-            	'    public%sfunction %s(%s);',
+            	static::INDENT . 'public%sfunction %s(%s);',
                 $method->isStatic() ? ' static ' : ' ',
                 $method->name,
                 $this->methodParametersToString($method)
@@ -100,7 +105,7 @@ class Writer
     protected function writeDocCommentOfMethod(\ReflectionMethod $method)
     {
         if ($method->getDocComment()) {
-            $this->writeString('    ');
+            $this->writeString(static::INDENT);
             $this->writeString($method->getDocComment());
             $this->writeString(PHP_EOL);
         }
