@@ -71,6 +71,7 @@ class Writer
     protected function writeMethods(array $methods)
     {
         foreach ($methods as $method) {
+            $this->writeDocCommentOfMethod($method);
             $this->writeMethod($method);
             $this->writeString(PHP_EOL);
         }
@@ -84,8 +85,7 @@ class Writer
     {
         $this->writeString(
             sprintf(
-            	'%s    public%sfunction %s(%s);',
-                $this->writeDocCommentOfMethod($method),
+            	'    public%sfunction %s(%s);',
                 $method->isStatic() ? ' static ' : ' ',
                 $method->name,
                 $this->methodParametersToString($method)
