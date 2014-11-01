@@ -1,10 +1,10 @@
 {
     "name": "gooh/interface-distiller",
-    "description": "Derives Interfaces from the API of a class", 
-    "type": "library", 
-    "version": "1.0.3",
+    "description": "Derives Interfaces from the API of a class",
+    "type": "library",
+    "version": "1.0.4",
     "bin": ["bin/Distiller"],
-    "keywords": ["reflection","generator","interface"], 
+    "keywords": ["reflection","generator","interface"],
     "license": "MIT",
     "authors": [{
         "name": "Gordon Oheim"
@@ -12,9 +12,9 @@
     "support": {
         "source": "https://github.com/gooh/InterfaceDistiller",
         "issues": "https://github.com/gooh/InterfaceDistiller/issues"
-    },  
-    "require": { 
-        "php": ">=5.3.0" 
+    },
+    "require": {
+        "php": ">=5.3.0"
     },
     "autoload": {
         "classmap": ["src/"]
